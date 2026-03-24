@@ -30,7 +30,7 @@ public class PathFinding : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("player");
         if(playerObj != null)
         {
             player = playerObj.transform;

@@ -8,7 +8,7 @@ public class introSkip : MonoBehaviour
     public void SceneChange()
     {
 
-        SceneManager.LoadScene("mainScene");
+        SceneManager.LoadScene("Slobodan");
     }
     
 

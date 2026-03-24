@@ -159,4 +159,15 @@ public class Player : MonoBehaviour
 
         transform.position = newPos;
     }
+
+    public void Slow(float slow)
+    {
+        moveSpeed = moveSpeed * 0.4f;
+        StartCoroutine(Slows(slow));
+    }
+    IEnumerator Slows(float slow) {
+        
+        yield return new WaitForSeconds(slow);
+        moveSpeed = 10f;
+    }
 }

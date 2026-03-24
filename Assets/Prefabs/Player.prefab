@@ -51,8 +51,11 @@ MonoBehaviour:
   projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
   paddingLeft: 0.5
   paddingRight: 0.5
-  paddingTop: 5
+  paddingTop: 3
   paddingBottom: 0.5
+  blinkDistance: 5
+  blinkCooldown: 1.5
+  HitToHeal: 4
 --- !u!58 &6311406557423552471
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -128,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 3
+  MaxHealth: 1000
 --- !u!1 &6610187278635293080
 GameObject:
   m_ObjectHideFlags: 0
