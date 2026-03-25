@@ -2,78 +2,64 @@ using System.Collections;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class PathFinding : MonoBehaviour
 {
 
-    [SerializeField] float speed = 3.0f;
-    [SerializeField] float stopDistance = 1.0f;
-    [SerializeField] float pauseDuration = 2.0f;
+    public float speed = 1.0f;
+    public float stopDistance = 1f;
+    //[SerializeField] float pauseDuration = 3.0f;
 
     [SerializeField] float minX = -14f;
     [SerializeField] float maxX = 14f;
 
-    private Transform player;
-    private float pauseTimer = 0f;
-    private bool isPaused = false;
+    public Transform player;
+    //private float pauseTimer = 0f;
+    //private bool isPaused = false;
 
     [SerializeField] GameObject seedPrefab;
-    [SerializeField] int totalSeeds = 20;
-    [SerializeField] float burstDuration = 2f;
+    [SerializeField] int totalSeeds = 10;
+    [SerializeField] float burstDuration = 3f;
 
     [SerializeField] GameObject jamPrefab;
     [SerializeField] int jamCount = 5;
-    private bool hasAttackedThisPause = false;
-    private int pauseCounter = 0;
+    //private bool hasAttackedThisPause = false;
+    //private int pauseCounter = 0;
+
+    public float followSmoothness = 5f;
 
 
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("player");
         if(playerObj != null)
         {
             player = playerObj.transform;
         }
     }
-
-    
-    void Update()
+    public void MoveTowardsPlayer()
     {
-        if(player == null)
+        speed = 1f;
+        if (player == null) return;
+
+        float direction = player.position.x > transform.position.x ? 1 : -1;
+        float newX = transform.position.x + (direction * speed * Time.deltaTime);
+        newX = Mathf.Clamp(newX, minX, maxX);
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+    }
+
+
+    public void Attack(int attackCount)
+    {
+        if (attackCount % 5 == 0 && attackCount != 0)
         {
-            return;
-        }
-        if (isPaused)
-        {
-            HandlePause();
+            StartCoroutine(JamSpamRoutine());
         }
         else
         {
-            MoveTowardsPlayer();
-        }
-    }
-
-    public void HandlePause()
-    {
-        if (!hasAttackedThisPause)
-        {
-            if(pauseCounter % 5 == 0 && pauseCounter != 0)
-            {
-                StartCoroutine(JamSpamRoutine());
-            }
-            else
-            {
-                StartCoroutine(SeedBurstRoutine());
-            }
-            hasAttackedThisPause = true;
-        }
-
-        pauseTimer -= Time.deltaTime;
-        if(pauseTimer <= 0)
-        {
-            isPaused = false;
-            hasAttackedThisPause = false;
+            StartCoroutine(SeedBurstRoutine());
         }
     }
 
@@ -102,41 +88,16 @@ public class PathFinding : MonoBehaviour
 
     void SpawnSeed()
     {
-        float randomAngle = Random.Range(90f,270f);
+        float randomAngle = Random.Range(120f,240f);
         Quaternion rotation = Quaternion.Euler(0,0,randomAngle);
 
-        GameObject seed = Instantiate(seedPrefab, transform.position, rotation);
+        GameObject seed = Instantiate(seedPrefab, transform.position - new Vector3(0, 0.5f, 0), rotation);
 
         Rigidbody2D rbSeed  = seed.GetComponent<Rigidbody2D>();
         if(rbSeed != null)
         {
-            float seedSpeed = 5f;
+            float seedSpeed = Random.Range(1f, 4f);
             rbSeed.linearVelocity = seed.transform.up * seedSpeed;
         }
     }
-
-    public void MoveTowardsPlayer()
-    {
-        float distanceFromPlayer = Mathf.Abs(player.position.x - transform.position.x);
-        if(distanceFromPlayer <= stopDistance)
-        {
-            StartPause();
-            return;
-        }
-
-        float direction = player.position.x > transform.position.x ? 1 : -1;
-        float newX = transform.position.x + (direction*speed*Time.deltaTime);
-
-        newX = Mathf.Clamp(newX, minX, maxX);
-        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-    }
-
-    public void StartPause()
-    {
-        isPaused = true;
-        pauseTimer = pauseDuration;
-        pauseCounter++;
-    }
-
-   
 }

@@ -1,28 +1,41 @@
-using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
-    [SerializeField] float MaxHealth = 100f;
-    private float currentHealth;
 
+    [SerializeField]  int MaxHealth;
+
+    public int CurrentHealth;
+
+    public int GetHealth()
+    {
+        return CurrentHealth;
+
+    }
     void Start()
     {
-        currentHealth = MaxHealth;    
+        CurrentHealth=MaxHealth;
     }
 
-    
+    public void TakeDamage(int damage)
+    {
+        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+
+        if (CurrentHealth <= 0)
+        {
+            Debug.Log("Dead");
+        }
+
+    }
+    public void Heal()
+    {
+        CurrentHealth = Mathf.Min(CurrentHealth + 1, MaxHealth);
+        Debug.Log("Healed! Current Health: " + CurrentHealth);
+    }
+
     void Update()
     {
         
-    }
-
-    public void TakeDamage(float dagame)
-    {
-        currentHealth = Mathf.Max(currentHealth - dagame, 0);
-        if(currentHealth == 0)
-        {
-            Destroy(gameObject);
-        }
     }
 }

@@ -21,13 +21,13 @@ public class SeedBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("player"))
         {
             HealthComponent playerHealth = other.GetComponent<HealthComponent>();
             
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damage);
+                playerHealth.TakeDamage((int)damage);
             }
 
             Destroy(gameObject);

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class JamTrap : MonoBehaviour
 {
-    [SerializeField] float stunDuration = 2f;
+    [SerializeField] float slowDuration = 2f;
     [SerializeField] float lifeTime = 5f;
     
     void Start()
@@ -13,13 +13,13 @@ public class JamTrap : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("player"))
         {
-            PlayerControl player = other.GetComponent<PlayerControl>();
+            Player player = other.GetComponent<Player>();
             
             if (player != null)
             {
-                player.ApplyStun(stunDuration);
+                player.Slow(slowDuration);
             }
 
             Destroy(gameObject);
