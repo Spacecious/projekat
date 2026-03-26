@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f76d99dde7ff604ba13cbeaef8db2fd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::SeedBullet
   speed: 10
-  damage: 10
+  damage: 1
   lifeTime: 4

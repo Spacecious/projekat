@@ -3,7 +3,7 @@ using UnityEngine;
 public class SeedBullet : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
-    [SerializeField] float damage = 10f;
+    [SerializeField] float damage = 1f;
     [SerializeField] float lifeTime = 4f;
     Rigidbody2D rb;
     

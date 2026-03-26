@@ -4,12 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class Player : MonoBehaviour
 {
 
     InputAction moveAction;
     InputAction fireAction;
     InputAction DashAction;
+    InputAction gambleAction;
 
     private Vector2 minBounds;
     private Vector2 maxBounds;
@@ -43,6 +45,12 @@ public class Player : MonoBehaviour
     private int Count = 0;
     private HealthComponent playerHealth;
 
+
+    public float damageMultiplier = 1f;
+    //private bool isSpeedBuffed = false;
+    private float originalMoveSpeed;
+    private bool canGamble = true;
+
     void Awake() 
     {
         playerHealth = GetComponent<HealthComponent>();
@@ -65,6 +73,8 @@ public class Player : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         fireAction = InputSystem.actions.FindAction("Jump");
         DashAction = InputSystem.actions.FindAction("Dash");
+        gambleAction = InputSystem.actions.FindAction("Gamble");
+        originalMoveSpeed = moveSpeed;
         InitBounds();
     }
 
@@ -81,6 +91,10 @@ public class Player : MonoBehaviour
         MovePlayer();
         Shoot();
         HandleDashInput();
+        if (gambleAction != null && gambleAction.triggered)
+        {
+            ActivateGamble();
+        }
     }
 
     private void HandleDashInput()
@@ -145,7 +159,7 @@ public class Player : MonoBehaviour
         Ammo = 5;
         isReloading = false;
         cd = true; 
-        Debug.Log("Reload završen!");
+        Debug.Log("Reload zavrsen!");
 
     }
 
@@ -169,5 +183,71 @@ public class Player : MonoBehaviour
         
         yield return new WaitForSeconds(slow);
         moveSpeed = 10f;
+    }
+
+
+    private void ActivateGamble()
+    {
+
+        if (!canGamble) return;
+        // Simuliramo 3 slota (0 = Limun, 1 = Sedmica, 2 = Borovnica)
+        int slot1 = UnityEngine.Random.Range(0, 3);
+        int slot2 = UnityEngine.Random.Range(0, 3);
+        int slot3 = UnityEngine.Random.Range(0, 3);
+
+        Debug.Log($"SLOT: {slot1} | {slot2} | {slot3}");
+
+        if (slot1 == slot2 && slot2 == slot3)
+        {
+            ApplyBuff(slot1); // Sva tri su ista!
+        }
+        else
+        {
+            Debug.Log("Vise srece drugi put!");
+        }
+        StartCoroutine(GambleCooldown());
+    }
+
+    IEnumerator GambleCooldown()
+    {
+        canGamble = false;
+        yield return new WaitForSeconds(10f); 
+        canGamble = true;
+        Debug.Log("Gamble spreman ponovo!");
+    }
+    private void ApplyBuff(int type)
+    {
+        switch (type)
+        {
+            case 0: // 3 LIMUNA = Heal
+                Debug.Log("Healed!!!");
+                GetComponent<HealthComponent>().Heal(); 
+                break;
+
+            case 1: // 3 SEDMICE = Damage x3
+                StartCoroutine(DamageBuffRoutine(3f, 5f)); // x3 damage na 5 sekundi
+                break;
+
+            case 2: // 3 BOROVNICE = Speed x2
+                StartCoroutine(SpeedBuffRoutine(2f, 5f)); // x2 brzina na 5 sekundi
+                break;
+        }
+    }
+    IEnumerator DamageBuffRoutine(float multiplier, float duration)
+    {
+        damageMultiplier = multiplier;
+        Debug.Log("DAMAGE BUFF ON!");
+        yield return new WaitForSeconds(duration);
+        damageMultiplier = 1f;
+        Debug.Log("Damage back to normal.");
+    }
+
+    IEnumerator SpeedBuffRoutine(float multiplier, float duration)
+    {
+        moveSpeed = originalMoveSpeed * multiplier;
+        Debug.Log("SPEED BUFF ON!");
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalMoveSpeed;
+        Debug.Log("Speed back to normal.");
     }
 }

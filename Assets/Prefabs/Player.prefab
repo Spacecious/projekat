@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1344390265984007678}
   - component: {fileID: 6311406557423552471}
   - component: {fileID: -4327865537454519077}
-  - component: {fileID: 6815900877618704066}
+  - component: {fileID: -3486804477561171705}
   m_Layer: 0
   m_Name: Player
   m_TagString: player
@@ -56,6 +56,7 @@ MonoBehaviour:
   blinkDistance: 5
   blinkCooldown: 1.5
   HitToHeal: 4
+  damageMultiplier: 1
 --- !u!58 &6311406557423552471
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -119,7 +120,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6815900877618704066
+--- !u!114 &-3486804477561171705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 1000
+  MaxHealth: 3
 --- !u!1 &6610187278635293080
 GameObject:
   m_ObjectHideFlags: 0
