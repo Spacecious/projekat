@@ -19,8 +19,6 @@ public class introSkip : MonoBehaviour
     {
         Screen.SetResolution(960, 540, FullScreenMode.Windowed);
         
-
-
         yield return null; // wait 1 frame
         
         SceneManager.LoadScene("mainMenu");

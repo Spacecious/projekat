@@ -25,6 +25,7 @@ public class boss1Defeat : MonoBehaviour
     
     void Menu()
     {
+        Screen.SetResolution(960, 540, FullScreenMode.Windowed);
         SceneManager.LoadScene("mainMenu");
     }
 }
