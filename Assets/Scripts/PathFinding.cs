@@ -78,8 +78,8 @@ public class PathFinding : MonoBehaviour
         for(int i = 0; i < jamCount; i++)
         {
             float randomX = Random.Range(minX, maxX);
-            float randomY = Random.Range(0, 10);
-            Vector3 spawnPos = new Vector3(randomX, -3, 0);
+            float randomY = Random.Range(-3, 0);
+            Vector3 spawnPos = new Vector3(randomX, randomY, 0);
             Instantiate(jamPrefab, spawnPos, Quaternion.identity);
 
             yield return new WaitForSeconds(0.15f);

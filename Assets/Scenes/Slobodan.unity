@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 670441145}
   - component: {fileID: 670441144}
   - component: {fileID: 670441143}
+  - component: {fileID: 670441147}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -319,6 +320,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670441147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670441142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3acb37b019fce44aaefbea2a7245b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::removeBorder
 --- !u!1 &975363161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3722780808976444051, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
@@ -486,7 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4aac35a69f90ef4386cb63bd4db5d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::boss1Defeat
-  bossBeat: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
