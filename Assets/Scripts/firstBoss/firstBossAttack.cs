@@ -9,9 +9,9 @@ public class firstBossAttack : StateMachineBehaviour
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-           pf = animator.GetComponent<PathFinding>();
+           pf = animator.GetComponentInParent<PathFinding>();
+        
 
-        // Stop movement immediately
         Rigidbody2D rb = animator.GetComponent<Rigidbody2D>();
         if (rb != null) rb.linearVelocity = Vector2.zero;
 

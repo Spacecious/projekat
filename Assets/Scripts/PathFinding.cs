@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
+
 public class PathFinding : MonoBehaviour
 {
 
@@ -29,16 +30,20 @@ public class PathFinding : MonoBehaviour
 
     public float followSmoothness = 5f;
 
+    [SerializeField] GameObject smokeBomb;
+
 
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("player");
-        if(playerObj != null)
+        if (player == null)
         {
-            player = playerObj.transform;
+            GameObject playerObj = GameObject.FindGameObjectWithTag("player"); 
+            if (playerObj != null)
+                player = playerObj.transform;
         }
     }
+
     public void MoveTowardsPlayer()
     {
         speed = 1f;
@@ -86,6 +91,7 @@ public class PathFinding : MonoBehaviour
         }
     }
 
+    
     void SpawnSeed()
     {
         float randomAngle = Random.Range(120f,240f);

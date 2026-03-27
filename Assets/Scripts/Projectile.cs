@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
 
         if (hc == null) return;
 
-        hc.TakeDamage(10);
+        hc.TakeDamage(100);
 
         if (sender == "player")
         {
