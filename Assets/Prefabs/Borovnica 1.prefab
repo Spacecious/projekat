@@ -102,8 +102,8 @@ GameObject:
   - component: {fileID: 1146202247528976358}
   - component: {fileID: 4729513815139986900}
   - component: {fileID: 8878398528814976823}
-  - component: {fileID: 3012764586380342331}
   - component: {fileID: 587124815899654474}
+  - component: {fileID: 5891554393435471915}
   m_Layer: 0
   m_Name: Borovnica 1
   m_TagString: Untagged
@@ -190,34 +190,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &3012764586380342331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010538466055692698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6cdd6e02967413489ae3a4e45968bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 20
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &587124815899654474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +204,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BorovnicaClone
   MinionPrefab: {fileID: 6217869615132484980, guid: f0ee36102846e8b4091605e835a105eb, type: 3}
   SpawnInterval: 5
+--- !u!114 &5891554393435471915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010538466055692698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
+  MaxHealth: 0
+  CurrentHealth: 0

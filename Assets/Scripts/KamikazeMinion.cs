@@ -54,7 +54,7 @@ public class Kamikaze : MonoBehaviour
             HealthComponent health = obj.GetComponent<HealthComponent>();
             if(health != null && obj.CompareTag("Player"))
             {
-                health.TakeDamage(Damage);
+                health.TakeDamage((int)Damage);
             }
         }
         Destroy(gameObject);
