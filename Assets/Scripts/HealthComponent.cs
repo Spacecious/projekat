@@ -39,18 +39,46 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-        //Screen.SetResolution(CurrentHealth*360, CurrentHealth*240, FullScreenMode.Windowed);
-       
-        
-        UpdateHeartUI();
-        if (CurrentHealth == 0)
+       CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+    UpdateHeartUI();
+
+    if (CurrentHealth == 0)
+    {
+        // 1. Proveravamo da li je uništeni objekat Boss pomoću Taga
+        if (gameObject.CompareTag("Boss")) 
         {
-            Destroy(gameObject);
+            UnlockPlayerAbilities();
         }
+
+        // 2. Ako je uništen Player, možda želiš da učitaš Game Over scenu
+        if (gameObject.CompareTag("player"))
+        {
+            Debug.Log("Player je poginuo!");
+            // SceneManager.LoadScene("GameOver"); // Primer
+        }
+
+        Destroy(gameObject);
+    }
         
 
     }
+
+
+    private void UnlockPlayerAbilities()
+{
+    // Postavljamo statičku varijablu koju smo dogovorili
+    Player.firstBossDefeated = true;
+
+    // Pronalazimo ikonice i aktiviramo ih
+    GameObject dashIcon = GameObject.Find("DashIcon");
+    GameObject gambleIcon = GameObject.Find("GambleIcon");
+
+    if (dashIcon != null) dashIcon.SetActive(true);
+    if (gambleIcon != null) gambleIcon.SetActive(true);
+
+    Debug.Log("BOSS PORAŽEN! Sposobnosti otključane.");
+}
+
     public void Heal()
     {
         CurrentHealth = Mathf.Min(CurrentHealth + 1, MaxHealth);

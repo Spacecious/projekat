@@ -9,9 +9,12 @@ public class Player : MonoBehaviour
 {
 
     InputAction moveAction;
-    InputAction fireAction;
     InputAction DashAction;
     InputAction gambleAction;
+    InputAction fireDown;
+    InputAction fireUp;
+    InputAction fireLeft;
+    InputAction fireRight;
 
     private Vector2 minBounds;
     private Vector2 maxBounds;
@@ -50,7 +53,7 @@ public class Player : MonoBehaviour
 
 
     public float damageMultiplier = 1f;
-    //private bool isSpeedBuffed = false;
+
     private float originalMoveSpeed;
     private bool canGamble = true;
 
@@ -59,6 +62,8 @@ public class Player : MonoBehaviour
 
     private AbilitiesCooldownUI abilityUI;
 
+
+    public static bool firstBossDefeated = false;
     void Awake() 
     {
         playerHealth = GetComponent<HealthComponent>();
@@ -79,9 +84,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        fireAction = InputSystem.actions.FindAction("Jump");
         DashAction = InputSystem.actions.FindAction("Dash");
         gambleAction = InputSystem.actions.FindAction("Gamble");
+        fireUp=InputSystem.actions.FindAction("ShootUp");
+        fireDown=InputSystem.actions.FindAction("ShootDown");
+        fireLeft=InputSystem.actions.FindAction("ShootLeft");
+        fireRight=InputSystem.actions.FindAction("ShootRight");
         originalMoveSpeed = moveSpeed;
         InitBounds();
         slotUI = GameObject.FindFirstObjectByType<SlotMachineUI>();
@@ -90,6 +98,12 @@ public class Player : MonoBehaviour
         if (abilityUI == null)
     {
         Debug.LogError("CRTIČNA GREŠKA: PlayerMovement nije našao AbilityCooldownUI u sceni! Proveri da li je skripta dodata na Canvas.");
+    }
+    if (!firstBossDefeated)
+    {
+       
+        GameObject.Find("DashIcon").SetActive(false);
+        GameObject.Find("GambleIcon").SetActive(false);
     }
     else 
     {
@@ -110,11 +124,14 @@ public class Player : MonoBehaviour
         if (isDashing) return;
         MovePlayer();
         Shoot();
+        if (firstBossDefeated) 
+    {
         HandleDashInput();
         if (gambleAction != null && gambleAction.triggered)
         {
             ActivateGamble();
         }
+    }
     }
 
     private void HandleDashInput()
@@ -146,28 +163,46 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-            if (fireAction.triggered && cd == true)
-            {
-                GameObject projObj = Instantiate(projectile, transform.position, Quaternion.identity);
-                Projectile proj = projObj.GetComponent<Projectile>();
-                proj.setVelocity(new Vector2(0, 10), gameObject.tag);
-                Ammo = Ammo - 1;
-                UpdateUI();
-               Debug.Log("Pucaj! Preostalo: " + Ammo);
-                if (Ammo <= 0)
-                {
+            
+               if (Ammo <= 0 || isReloading || !cd) return;
 
-                    
-                    StartCoroutine(Reload());
-                }
-            else
-            {
-                
-                StartCoroutine(Cooldown());
-            }
-            cd = false;
-            Destroy(projObj, 5f);
-            }
+    Vector2 direction = Vector2.zero;
+    bool fired = false;
+
+    // 2. Određivanje pravca na osnovu inputa
+    if (fireUp.triggered) { direction = new Vector2(0, 10); fired = true; }
+    else if (fireDown.triggered) { direction = new Vector2(0, -10); fired = true; }
+    else if (fireLeft.triggered) { direction = new Vector2(-10, 0); fired = true; } // Ovde je bilo (10,0) u tvom kodu, promenio sam na (-10,0) za levo
+    else if (fireRight.triggered) { direction = new Vector2(10, 0); fired = true; } // Ovde je bilo (-10,0), promenio sam na (10,0) za desno
+
+    // 3. Ako je igrač pritisnuo neku od strelica
+    if (fired)
+    {
+        // Tek sad pravimo projektil
+        GameObject projObj = Instantiate(projectile, transform.position, Quaternion.identity);
+        Projectile proj = projObj.GetComponent<Projectile>();
+        
+        if (proj != null)
+        {
+            proj.setVelocity(direction, gameObject.tag);
+        }
+
+        // Smanjujemo municiju i palimo cooldown
+        Ammo--;
+        UpdateUI();
+        cd = false;
+        StartCoroutine(Cooldown());
+        Destroy(projObj, 5f);
+
+        Debug.Log("Pucaj! Preostalo: " + Ammo);
+
+        // 4. Provera za reload
+        if (Ammo <= 0)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+            
     }
     IEnumerator Cooldown()
     {
