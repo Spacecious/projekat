@@ -7,6 +7,8 @@ public class HealthComponent : MonoBehaviour
     [SerializeField]  int MaxHealth;
     private GameObject[] heartSprites;
     private int CurrentHealth;
+    
+   
 
     public int GetHealth()
     {
@@ -18,6 +20,7 @@ public class HealthComponent : MonoBehaviour
         CurrentHealth=MaxHealth;
         UpdateHeartUI();
         FindHeartsInScene();
+        //Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen);
     }
 
     void FindHeartsInScene()
@@ -30,25 +33,29 @@ public class HealthComponent : MonoBehaviour
         heartSprites[2] = GameObject.Find("Health_3");
 
         // Sigurnosna provera
-        if (heartSprites[0] == null) Debug.LogError("Nisam našao Health_1 u sceni!");
+        if (heartSprites[0] == null) Debug.LogError("Nisam naï¿½ao Health_1 u sceni!");
     }
 
 
     public void TakeDamage(int damage)
     {
         CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-
+        //Screen.SetResolution(CurrentHealth*360, CurrentHealth*240, FullScreenMode.Windowed);
+       
+        
         UpdateHeartUI();
         if (CurrentHealth == 0)
         {
             Destroy(gameObject);
         }
+        
 
     }
     public void Heal()
     {
         CurrentHealth = Mathf.Min(CurrentHealth + 1, MaxHealth);
         Debug.Log("Healed! Current Health: " + CurrentHealth);
+        //Screen.SetResolution(CurrentHealth*360, CurrentHealth*240, FullScreenMode.Windowed);
         UpdateHeartUI();
     }
 
@@ -75,5 +82,6 @@ public class HealthComponent : MonoBehaviour
                 if (heartSprites[i] != null) heartSprites[i].SetActive(false);
             }
         }
+       
     }
 }

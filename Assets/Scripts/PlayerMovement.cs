@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private Vector2 minBounds;
     private Vector2 maxBounds;
 
+
     Vector3 moveInput;
 
     private int Ammo=5;
@@ -36,7 +37,9 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] float blinkDistance = 5f; 
-    [SerializeField] float blinkCooldown = 1.5f;
+    [SerializeField] float blinkCooldown = 3f;
+
+    [SerializeField] private float gambleCooldown = 10f;
     
     private bool isDashing = false;
     private bool canBlink = true;
@@ -50,6 +53,11 @@ public class Player : MonoBehaviour
     //private bool isSpeedBuffed = false;
     private float originalMoveSpeed;
     private bool canGamble = true;
+
+    private SlotMachineUI slotUI;
+    private AmmoUI ammoUI;
+
+    private AbilitiesCooldownUI abilityUI;
 
     void Awake() 
     {
@@ -76,6 +84,18 @@ public class Player : MonoBehaviour
         gambleAction = InputSystem.actions.FindAction("Gamble");
         originalMoveSpeed = moveSpeed;
         InitBounds();
+        slotUI = GameObject.FindFirstObjectByType<SlotMachineUI>();
+        ammoUI = GameObject.FindFirstObjectByType<AmmoUI>();
+        abilityUI = GameObject.FindFirstObjectByType<AbilitiesCooldownUI>();
+        if (abilityUI == null)
+    {
+        Debug.LogError("CRTIČNA GREŠKA: PlayerMovement nije našao AbilityCooldownUI u sceni! Proveri da li je skripta dodata na Canvas.");
+    }
+    else 
+    {
+        Debug.Log("Uspešno povezan Ability Cooldown UI!");
+    }
+        UpdateUI();
     }
 
     private void InitBounds()
@@ -104,11 +124,15 @@ public class Player : MonoBehaviour
             StartCoroutine(DashRoutine());
         }
     }
+    void UpdateUI()
+    {
+        if (ammoUI != null) ammoUI.UpdateAmmoDisplay(Ammo);
+    }
 
     IEnumerator DashRoutine()
     {
         canBlink = false;
-
+        if (abilityUI != null) abilityUI.StartDashCooldown(blinkCooldown);
         Vector2 blinkDir = moveAction.ReadValue<Vector2>().normalized;
         if (blinkDir.magnitude == 0) blinkDir = Vector2.up; 
         Vector3 targetPos = transform.position + (Vector3)blinkDir * blinkDistance;
@@ -128,7 +152,8 @@ public class Player : MonoBehaviour
                 Projectile proj = projObj.GetComponent<Projectile>();
                 proj.setVelocity(new Vector2(0, 10), gameObject.tag);
                 Ammo = Ammo - 1;
-                Debug.Log(Ammo);
+                UpdateUI();
+               Debug.Log("Pucaj! Preostalo: " + Ammo);
                 if (Ammo <= 0)
                 {
 
@@ -197,16 +222,29 @@ public class Player : MonoBehaviour
 
         Debug.Log($"SLOT: {slot1} | {slot2} | {slot3}");
 
-        if (slot1 == slot2 && slot2 == slot3)
-        {
-            ApplyBuff(slot1); // Sva tri su ista!
-        }
-        else
+        if (slotUI != null)
+    {
+        slotUI.StartSpinning(slot1, slot2, slot3);
+    }
+
+    StartCoroutine(ApplyBuffWithDelay(slot1, slot2, slot3, 1.0f)); 
+    if (abilityUI != null) abilityUI.StartGambleCooldown(gambleCooldown);
+        StartCoroutine(GambleCooldown());
+    }
+
+    IEnumerator ApplyBuffWithDelay(int s1, int s2, int s3, float delay)
+{
+    yield return new WaitForSeconds(delay); // Čekamo da se slotovi "zaustave"
+    
+    if (s1 == s2 && s2 == s3)
+    {
+        ApplyBuff(s1); // Tvoja stara funkcija koja pali Shield, Damage ili Speed
+    }
+    else
         {
             Debug.Log("Vise srece drugi put!");
         }
-        StartCoroutine(GambleCooldown());
-    }
+}
 
     IEnumerator GambleCooldown()
     {

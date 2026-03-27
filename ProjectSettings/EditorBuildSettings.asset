@@ -5,14 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/gameStart.unity
     guid: c1e4124143d004841b654e3a318efe7b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/mainScene.unity
     guid: 3d7a9ce22b800de4ba174e2d6d236ec8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Slobodan.unity
     guid: 900f423e01d6c9c4bab0a6b4ad83743b
+  - enabled: 1
+    path: Assets/Scenes/Scena sa Slot Masinom.unity
+    guid: c636a9aa42d0cd944a0990cf17276f46
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
