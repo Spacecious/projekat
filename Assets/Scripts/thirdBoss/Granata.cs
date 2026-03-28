@@ -4,7 +4,6 @@ public class Granata : MonoBehaviour
 {
     
     [SerializeField] GameObject thornPrefab;
-
     [SerializeField] float speed = 10f;
     [SerializeField] float timeToExplode = 1f;
     
@@ -41,7 +40,7 @@ public class Granata : MonoBehaviour
 
     void Explode()
     {
-        if(hasExploded)
+        if (hasExploded)
             return;
         hasExploded = true;
         Debug.Log("GRANATA BUM! Stvaram trnove.");

@@ -8,7 +8,7 @@ public class HealthComponent : MonoBehaviour
     [SerializeField]  int MaxHealth;
     private GameObject[] heartSprites;
     public int CurrentHealth;
-    
+    public AudioSource dmg;
     private EnemyHealthUI enemyUI;
    
 
@@ -47,6 +47,7 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(int damage)
     {
        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+        dmg.Play();
     
     if (enemyUI != null)
     {

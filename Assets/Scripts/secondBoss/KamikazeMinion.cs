@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,10 +8,12 @@ public class Kamikaze : MonoBehaviour
     [SerializeField] float MinionSpeed = 5f;
     [SerializeField] float TimeBeforeExplosion = 3f;
     [SerializeField] float Damage = 10f;
-    [SerializeField] float ExplosionRadius = 2f;
+    [SerializeField] float ExplosionRadius = 10f;
 
     private Transform player;
     private bool HasExploded = false;
+
+    public GameObject explosionPrefab;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class Kamikaze : MonoBehaviour
             player = playerObj.transform;
         }
         Invoke("Explode", TimeBeforeExplosion);
+        
     }
 
     
@@ -34,29 +37,33 @@ public class Kamikaze : MonoBehaviour
 
             if(DistanceToPlayer <= ExplosionRadius)
             {
+                
                 Explode();
+                
             }
         }
     }
 
     void Explode()
     {
-        if(HasExploded)
-            return;
+        if (HasExploded) return; // ← move this to the top
         HasExploded = true;
         CancelInvoke("Explode");
-        
-        Debug.Log("BOOM!");
-        Collider2D[] ObjectsInRange = Physics2D.OverlapCircleAll(transform.position, ExplosionRadius);
 
-        foreach(Collider2D obj in ObjectsInRange)
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        Debug.Log("BOOM!");
+
+        Collider2D[] ObjectsInRange = Physics2D.OverlapCircleAll(transform.position, ExplosionRadius);
+        foreach (Collider2D obj in ObjectsInRange)
         {
             HealthComponent health = obj.GetComponent<HealthComponent>();
-            if(health != null && obj.CompareTag("Player"))
+            if (health != null && obj.CompareTag("Player"))
             {
                 health.TakeDamage((int)Damage);
             }
         }
+
         Destroy(gameObject);
     }
 }

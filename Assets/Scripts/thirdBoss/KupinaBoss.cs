@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class KupinaBoss : MonoBehaviour
 {
-
+    
     [SerializeField] GameObject granataPrefab;
     [SerializeField] float spwanRate = 4f;
 

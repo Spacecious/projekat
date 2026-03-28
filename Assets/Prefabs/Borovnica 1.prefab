@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 4185963130701210195}
   - component: {fileID: -499794127964867608}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Borovnica 1
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,14 +422,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PathFinding
   speed: 20
   stopDistance: 1
-  pauseDuration: 2
   minX: -14
   maxX: 14
+  player: {fileID: 0}
   seedPrefab: {fileID: 774457973011454126, guid: c3051fe8f1e7f394c884be48edc3b038, type: 3}
   totalSeeds: 20
   burstDuration: 2
   jamPrefab: {fileID: 330168169870355151, guid: 9b9cac87b85a1274daf69a2babb7ea93, type: 3}
   jamCount: 5
+  followSmoothness: 5
+  smokeBomb: {fileID: 0}
 --- !u!50 &5687019098051913878
 Rigidbody2D:
   serializedVersion: 5
@@ -515,7 +517,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 3
+  MaxHealth: 1
+  CurrentHealth: 1
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7483376501506639480
 GameObject:
   m_ObjectHideFlags: 0

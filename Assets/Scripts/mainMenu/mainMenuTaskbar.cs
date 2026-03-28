@@ -100,7 +100,7 @@ public class mainMenuTaskbar : MonoBehaviour
 
         IntPtr handle = GetActiveWindow();
         SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
-        SceneManager.LoadScene("BorovnicaFinalBoss");
+        SceneManager.LoadScene("Kupina");
     }
 }
 

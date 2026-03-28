@@ -394,6 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   MaxHealth: 200
   CurrentHealth: 200
+  dmg: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:
@@ -419,6 +420,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3722780808976444051, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3722780808976444051, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5108588545256381808, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
