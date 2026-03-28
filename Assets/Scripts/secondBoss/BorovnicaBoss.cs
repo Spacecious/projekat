@@ -15,7 +15,7 @@ public class BorovnicaBoss : MonoBehaviour
 
     [SerializeField] GameObject ClonePrefab;
     [SerializeField] int NumberOfClones = 2;
-    [SerializeField] float HPStep = 50f;
+    [SerializeField] float HPStep = 5f;
 
     private HealthComponent myHealth;
     private float nextHealthThreshold;
@@ -32,6 +32,7 @@ public class BorovnicaBoss : MonoBehaviour
         nextHealthThreshold = myHealth.GetHealth() - HPStep;
         animator = GetComponent<Animator>();
         startPos = transform.position;
+        SpawnMinion();
     }
 
 

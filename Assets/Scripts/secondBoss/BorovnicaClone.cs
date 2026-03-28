@@ -4,7 +4,7 @@ public class BorovnicaClone : MonoBehaviour
 {
     
     [SerializeField] GameObject MinionPrefab;
-    [SerializeField] float SpawnInterval = 4f;
+    [SerializeField] float SpawnInterval = 3f;
     private float timer = 0f;
 
     private HealthComponent myHealth;
@@ -18,6 +18,7 @@ public class BorovnicaClone : MonoBehaviour
     {
         myHealth = GetComponent<HealthComponent>();
         startPos = transform.position;
+        SpawnMinion();
     }
 
     

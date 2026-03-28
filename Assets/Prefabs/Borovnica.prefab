@@ -115,10 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BorovnicaBoss
   animator: {fileID: 4084865969124018182}
   MinionPrefab: {fileID: 6217869615132484980, guid: f0ee36102846e8b4091605e835a105eb, type: 3}
-  SpawnInterval: 5
+  SpawnInterval: 4
+  smokeBomb: {fileID: 0}
   ClonePrefab: {fileID: 5010538466055692698, guid: 6583b9c2bb96989488072d19effe0890, type: 3}
   NumberOfClones: 3
-  HPStep: 50
+  HPStep: 4
   amplitude: 0.8
   frequency: 1
   summon: {fileID: 5449817960637515079}
@@ -312,5 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 1000
-  CurrentHealth: 1000
+  MaxHealth: 23
+  CurrentHealth: 23
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []

@@ -52,8 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PathFinding
   speed: 20
   stopDistance: 1
-  minX: -14
-  maxX: 14
+  minX: -8
+  maxX: 8
   player: {fileID: 0}
   seedPrefab: {fileID: 774457973011454126, guid: c3051fe8f1e7f394c884be48edc3b038, type: 3}
   totalSeeds: 20
@@ -61,6 +61,7 @@ MonoBehaviour:
   jamPrefab: {fileID: 330168169870355151, guid: 9b9cac87b85a1274daf69a2babb7ea93, type: 3}
   jamCount: 5
   followSmoothness: 5
+  smokeBomb: {fileID: 0}
 --- !u!50 &5687019098051913878
 Rigidbody2D:
   serializedVersion: 5
@@ -146,8 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 1000
-  CurrentHealth: 0
+  MaxHealth: 15
+  CurrentHealth: 15
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &6930597414893640600
 Animator:
   serializedVersion: 7
@@ -241,4 +245,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4aac35a69f90ef4386cb63bd4db5d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::boss1Defeat
-  bossBeat: 0

@@ -397,11 +397,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   animator: {fileID: 0}
   MinionPrefab: {fileID: 6217869615132484980, guid: f0ee36102846e8b4091605e835a105eb, type: 3}
-  SpawnInterval: 5
+  SpawnInterval: 4
   smokeBomb: {fileID: 6428377651202343089, guid: 0f2e806a4793f5243a9f06af57b1aa09, type: 3}
   ClonePrefab: {fileID: 5010538466055692698, guid: 6583b9c2bb96989488072d19effe0890, type: 3}
   NumberOfClones: 2
-  HPStep: 500
+  HPStep: 4
   amplitude: 0.8
   frequency: 1
   summon: {fileID: 1591338232}
@@ -494,6 +494,18 @@ PrefabInstance:
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4729513815139986900, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: m_Radius
+      value: 0.23262024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729513815139986900, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.009272957
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729513815139986900, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.020085335
+      objectReference: {fileID: 0}
     - target: {fileID: 5010538466055692698, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: m_Name
       value: Borovnica
@@ -508,11 +520,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: MaxHealth
-      value: 10
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: CurrentHealth
-      value: 10
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -575,8 +587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 100
-  CurrentHealth: 100
+  MaxHealth: 3
+  CurrentHealth: 3
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

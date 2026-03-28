@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     Vector3 moveInput;
 
-    private int Ammo=5;
+    private int Ammo=10;
 
 
     [SerializeField]

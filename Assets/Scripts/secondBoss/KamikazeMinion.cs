@@ -7,7 +7,7 @@ public class Kamikaze : MonoBehaviour
     
     [SerializeField] float MinionSpeed = 5f;
     [SerializeField] float TimeBeforeExplosion = 3f;
-    [SerializeField] float Damage = 10f;
+    [SerializeField] float Damage = 2f;
     [SerializeField] float ExplosionRadius = 2f;
 
     private Transform player;
