@@ -53,14 +53,11 @@ MonoBehaviour:
   paddingRight: 0.5
   paddingTop: 3
   paddingBottom: 0.5
-  dashIcon: {fileID: 0}
-  gambleIcon: {fileID: 0}
   blinkDistance: 5
   blinkCooldown: 1.5
   gambleCooldown: 10
   HitToHeal: 4
   damageMultiplier: 1
-  slotUI: {fileID: 0}
 --- !u!58 &6311406557423552471
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,8 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 3
-  CurrentHealth: 3
+  MaxHealth: 10000
+  CurrentHealth: 0
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
