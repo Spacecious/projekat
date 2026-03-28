@@ -111,7 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Granata
   thornPrefab: {fileID: 1245724255588293841, guid: 0d4f4233d1697db4f902b7a8126198ca, type: 3}
-  shaker: {fileID: 2423736291175832753, guid: bdfb319e15317c546b613a73b0ff54a3, type: 3}
   speed: 10
   timeToExplode: 1
   numberOfThorns: 8
@@ -142,7 +141,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5542850575298552655}
@@ -196,8 +195,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.8867924, b: 0.0794534, a: 1}
+  m_Sprite: {fileID: 4972715515790811454, guid: b3b15eb29940cdf4f88135be63907647, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

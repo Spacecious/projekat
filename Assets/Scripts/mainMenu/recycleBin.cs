@@ -5,6 +5,7 @@ using UnityEngine.Video;
 public class recycleBin : MonoBehaviour
 {
     public GameObject tata;
+    bool isUpaljen;
     void Start()
     {
         
@@ -17,6 +18,7 @@ public class recycleBin : MonoBehaviour
     }
     public void onClick()
     {
-        tata.SetActive(true);
+        isUpaljen = !isUpaljen;
+        tata.SetActive(isUpaljen);
     }
 }
