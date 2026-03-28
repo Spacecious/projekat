@@ -304,7 +304,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 2.9737499, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -420,7 +420,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3486804477561171705, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
       propertyPath: MaxHealth
-      value: 3
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3722780808976444051, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
       propertyPath: m_Name
@@ -525,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3125899423554882100, guid: 385e74f492017724facd1034305d34ed, type: 3}
       propertyPath: MaxHealth
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3125899423554882100, guid: 385e74f492017724facd1034305d34ed, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.size

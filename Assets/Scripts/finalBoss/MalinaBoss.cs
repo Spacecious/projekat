@@ -7,7 +7,8 @@ public class MalinaBoss : MonoBehaviour
     [SerializeField] GameObject malinaMinion;
 
     [SerializeField] float spawnCooldown = 3f;
-    [SerializeField] float healAmount = 2f;
+    [SerializeField] float spawnReduction = 0.5f;
+    [SerializeField] int healAmount = 2;
 
     private HealthComponent malinaHealth;
     private RandomMovement mover;
@@ -39,19 +40,23 @@ public class MalinaBoss : MonoBehaviour
 
             if (isSpawning) {
                 SpawnMinions();
-                yield return new WaitForSeconds(spawnCooldown);
+                yield return new WaitForSeconds(spawnCooldown -= spawnReduction);
             }
 
             if (malinaHealth.GetHealth() <= 4 && !finalPhase) {
                 isSpawning = false;
-                StartBulletHell();
+                finalPhase = true;
+                //StartBulletHell();
 
                 GameObject[] minions = GameObject.FindGameObjectsWithTag("MalinaMinion");
 
                 if (minions.Length > 0) {
-                    float totalHeal = minions.Length * healAmount;
-                    // malinaHealth.Heal(totalHealth);
-                    finalPhase = true;
+                    int totalHeal = minions.Length * healAmount;
+                    malinaHealth.Heal(totalHeal);
+                }
+
+                foreach (var minion in minions) {
+                    Destroy(minion);
                 }
             }
 
@@ -59,7 +64,10 @@ public class MalinaBoss : MonoBehaviour
                 bossCollider.enabled = true;
                 if (mover != null) mover.StartMoving();
                 if (shooter != null) shooter.StartShooting();
+                yield break;
             }
+
+            yield return null;
         }
     }
 
@@ -76,6 +84,7 @@ public class MalinaBoss : MonoBehaviour
     }
 
     void StartBulletHell() {
+        Debug.Log("pinuninuist");
         SceneManager.LoadScene("BulletHell", LoadSceneMode.Additive);
     }
 }

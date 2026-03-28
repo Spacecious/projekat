@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b2e636b72e34f4181dfc6d5a5cc573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootAtPlayer
-  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
+  projectile: {fileID: 2222452220259527750, guid: c96181b0f186ce045ba855eb96efc585, type: 3}
   reloadSpeed: 1
-  ammo: 2
+  ammo: 3
   shootInterval: 0.5
   bulletSpeed: 10
