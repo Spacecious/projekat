@@ -92,9 +92,9 @@ public class Player : MonoBehaviour
         fireRight=InputSystem.actions.FindAction("ShootRight");
         originalMoveSpeed = moveSpeed;
         InitBounds();
-        slotUI = GameObject.FindFirstObjectByType<SlotMachineUI>();
-        ammoUI = GameObject.FindFirstObjectByType<AmmoUI>();
-        abilityUI = GameObject.FindFirstObjectByType<AbilitiesCooldownUI>();
+        slotUI = GameObject.FindAnyObjectByType<SlotMachineUI>();
+        ammoUI = GameObject.FindAnyObjectByType<AmmoUI>();
+        abilityUI = GameObject.FindAnyObjectByType<AbilitiesCooldownUI>();
         if (abilityUI == null)
     {
         Debug.LogError("CRTIČNA GREŠKA: PlayerMovement nije našao AbilityCooldownUI u sceni! Proveri da li je skripta dodata na Canvas.");
@@ -102,8 +102,8 @@ public class Player : MonoBehaviour
     if (!firstBossDefeated)
     {
        
-        GameObject.Find("DashIcon").SetActive(false);
-        GameObject.Find("GambleIcon").SetActive(false);
+        GameObject.Find("Dash_Icon").SetActive(false);
+        GameObject.Find("Gamble_Icon").SetActive(false);
     }
     else 
     {

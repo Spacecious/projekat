@@ -6,7 +6,7 @@ public class HealthComponent : MonoBehaviour
 
     [SerializeField]  int MaxHealth;
     private GameObject[] heartSprites;
-    private int CurrentHealth;
+    public int CurrentHealth;
     
    
 

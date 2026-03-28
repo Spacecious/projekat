@@ -3,7 +3,7 @@ using UnityEngine;
 public class SmokeBomb : MonoBehaviour
 {
     [SerializeField] GameObject smokeBomb;
-    AudioSource fall;
+    public AudioSource fall;
     void Start()
     {
         
