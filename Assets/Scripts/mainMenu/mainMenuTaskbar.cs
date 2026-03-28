@@ -1,11 +1,13 @@
 using JetBrains.Annotations;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using TMPro;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+using System.Diagnostics;
 
 public class mainMenuTaskbar : MonoBehaviour
 {
@@ -72,8 +74,14 @@ public class mainMenuTaskbar : MonoBehaviour
 
         IntPtr handle = GetActiveWindow();
         SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
-        SceneManager.LoadScene("Slobodan");
-    }
+        
+
+        
+      
+        Process.Start(Application.dataPath.Replace("_Data", ".exe"), "-scene mainMenu"); 
+         
+         SceneManager.LoadScene("Slobodan");
+         }
 
 
     public void secondBoss()
