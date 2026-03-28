@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335cba3e8ba538748bbbf54131fd6238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MalinaBoss
-  malinaMinion: {fileID: 0}
+  malinaMinion: {fileID: 6328714576549871466, guid: 5c90b463df586db47b34745180a3f324, type: 3}
   spawnCooldown: 8
   healAmount: 2
 --- !u!114 &4340290317825375978
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b2e636b72e34f4181dfc6d5a5cc573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootAtPlayer
-  projectile: {fileID: 0}
+  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
   reloadSpeed: 3
   ammo: 30
   shootInterval: 0.5

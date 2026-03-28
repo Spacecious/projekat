@@ -223,6 +223,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShootAtPlayer
   projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
   reloadSpeed: 1
-  ammo: 3
+  ammo: 2
   shootInterval: 0.5
   bulletSpeed: 10
