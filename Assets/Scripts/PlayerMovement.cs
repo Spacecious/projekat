@@ -4,15 +4,21 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class Player : MonoBehaviour
 {
 
     InputAction moveAction;
-    InputAction fireAction;
     InputAction DashAction;
+    InputAction gambleAction;
+    InputAction fireDown;
+    InputAction fireUp;
+    InputAction fireLeft;
+    InputAction fireRight;
 
     private Vector2 minBounds;
     private Vector2 maxBounds;
+
 
     Vector3 moveInput;
 
@@ -34,7 +40,9 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] float blinkDistance = 5f; 
-    [SerializeField] float blinkCooldown = 1.5f;
+    [SerializeField] float blinkCooldown = 3f;
+
+    [SerializeField] private float gambleCooldown = 10f;
     
     private bool isDashing = false;
     private bool canBlink = true;
@@ -43,6 +51,19 @@ public class Player : MonoBehaviour
     private int Count = 0;
     private HealthComponent playerHealth;
 
+
+    public float damageMultiplier = 1f;
+
+    private float originalMoveSpeed;
+    private bool canGamble = true;
+
+    private SlotMachineUI slotUI;
+    private AmmoUI ammoUI;
+
+    private AbilitiesCooldownUI abilityUI;
+
+
+    public static bool firstBossDefeated = false;
     void Awake() 
     {
         playerHealth = GetComponent<HealthComponent>();
@@ -63,9 +84,32 @@ public class Player : MonoBehaviour
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        fireAction = InputSystem.actions.FindAction("Jump");
         DashAction = InputSystem.actions.FindAction("Dash");
+        gambleAction = InputSystem.actions.FindAction("Gamble");
+        fireUp=InputSystem.actions.FindAction("ShootUp");
+        fireDown=InputSystem.actions.FindAction("ShootDown");
+        fireLeft=InputSystem.actions.FindAction("ShootLeft");
+        fireRight=InputSystem.actions.FindAction("ShootRight");
+        originalMoveSpeed = moveSpeed;
         InitBounds();
+        slotUI = GameObject.FindFirstObjectByType<SlotMachineUI>();
+        ammoUI = GameObject.FindFirstObjectByType<AmmoUI>();
+        abilityUI = GameObject.FindFirstObjectByType<AbilitiesCooldownUI>();
+        if (abilityUI == null)
+    {
+        Debug.LogError("CRTIČNA GREŠKA: PlayerMovement nije našao AbilityCooldownUI u sceni! Proveri da li je skripta dodata na Canvas.");
+    }
+    if (!firstBossDefeated)
+    {
+       
+        GameObject.Find("DashIcon").SetActive(false);
+        GameObject.Find("GambleIcon").SetActive(false);
+    }
+    else 
+    {
+        Debug.Log("Uspešno povezan Ability Cooldown UI!");
+    }
+        UpdateUI();
     }
 
     private void InitBounds()
@@ -80,7 +124,14 @@ public class Player : MonoBehaviour
         if (isDashing) return;
         MovePlayer();
         Shoot();
+        if (firstBossDefeated) 
+    {
         HandleDashInput();
+        if (gambleAction != null && gambleAction.triggered)
+        {
+            ActivateGamble();
+        }
+    }
     }
 
     private void HandleDashInput()
@@ -90,11 +141,15 @@ public class Player : MonoBehaviour
             StartCoroutine(DashRoutine());
         }
     }
+    void UpdateUI()
+    {
+        if (ammoUI != null) ammoUI.UpdateAmmoDisplay(Ammo);
+    }
 
     IEnumerator DashRoutine()
     {
         canBlink = false;
-
+        if (abilityUI != null) abilityUI.StartDashCooldown(blinkCooldown);
         Vector2 blinkDir = moveAction.ReadValue<Vector2>().normalized;
         if (blinkDir.magnitude == 0) blinkDir = Vector2.up; 
         Vector3 targetPos = transform.position + (Vector3)blinkDir * blinkDistance;
@@ -108,27 +163,46 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-            if (fireAction.triggered && cd == true)
-            {
-                GameObject projObj = Instantiate(projectile, transform.position, Quaternion.identity);
-                Projectile proj = projObj.GetComponent<Projectile>();
-                proj.setVelocity(new Vector2(0, 10), gameObject.tag);
-                Ammo = Ammo - 1;
-                Debug.Log(Ammo);
-                if (Ammo <= 0)
-                {
+            
+               if (Ammo <= 0 || isReloading || !cd) return;
 
-                    
-                    StartCoroutine(Reload());
-                }
-            else
-            {
-                
-                StartCoroutine(Cooldown());
-            }
-            cd = false;
-            Destroy(projObj, 5f);
-            }
+    Vector2 direction = Vector2.zero;
+    bool fired = false;
+
+    // 2. Određivanje pravca na osnovu inputa
+    if (fireUp.triggered) { direction = new Vector2(0, 10); fired = true; }
+    else if (fireDown.triggered) { direction = new Vector2(0, -10); fired = true; }
+    else if (fireLeft.triggered) { direction = new Vector2(-10, 0); fired = true; } // Ovde je bilo (10,0) u tvom kodu, promenio sam na (-10,0) za levo
+    else if (fireRight.triggered) { direction = new Vector2(10, 0); fired = true; } // Ovde je bilo (-10,0), promenio sam na (10,0) za desno
+
+    // 3. Ako je igrač pritisnuo neku od strelica
+    if (fired)
+    {
+        // Tek sad pravimo projektil
+        GameObject projObj = Instantiate(projectile, transform.position, Quaternion.identity);
+        Projectile proj = projObj.GetComponent<Projectile>();
+        
+        if (proj != null)
+        {
+            proj.setVelocity(direction, gameObject.tag);
+        }
+
+        // Smanjujemo municiju i palimo cooldown
+        Ammo--;
+        UpdateUI();
+        cd = false;
+        StartCoroutine(Cooldown());
+        Destroy(projObj, 5f);
+
+        Debug.Log("Pucaj! Preostalo: " + Ammo);
+
+        // 4. Provera za reload
+        if (Ammo <= 0)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+            
     }
     IEnumerator Cooldown()
     {
@@ -145,7 +219,7 @@ public class Player : MonoBehaviour
         Ammo = 5;
         isReloading = false;
         cd = true; 
-        Debug.Log("Reload zavr�en!");
+        Debug.Log("Reload zavrsen!");
 
     }
 
@@ -169,5 +243,84 @@ public class Player : MonoBehaviour
         
         yield return new WaitForSeconds(slow);
         moveSpeed = 10f;
+    }
+
+
+    private void ActivateGamble()
+    {
+
+        if (!canGamble) return;
+        // Simuliramo 3 slota (0 = Limun, 1 = Sedmica, 2 = Borovnica)
+        int slot1 = UnityEngine.Random.Range(0, 3);
+        int slot2 = UnityEngine.Random.Range(0, 3);
+        int slot3 = UnityEngine.Random.Range(0, 3);
+
+        Debug.Log($"SLOT: {slot1} | {slot2} | {slot3}");
+
+        if (slotUI != null)
+    {
+        slotUI.StartSpinning(slot1, slot2, slot3);
+    }
+
+    StartCoroutine(ApplyBuffWithDelay(slot1, slot2, slot3, 1.0f)); 
+    if (abilityUI != null) abilityUI.StartGambleCooldown(gambleCooldown);
+        StartCoroutine(GambleCooldown());
+    }
+
+    IEnumerator ApplyBuffWithDelay(int s1, int s2, int s3, float delay)
+{
+    yield return new WaitForSeconds(delay); // Čekamo da se slotovi "zaustave"
+    
+    if (s1 == s2 && s2 == s3)
+    {
+        ApplyBuff(s1); // Tvoja stara funkcija koja pali Shield, Damage ili Speed
+    }
+    else
+        {
+            Debug.Log("Vise srece drugi put!");
+        }
+}
+
+    IEnumerator GambleCooldown()
+    {
+        canGamble = false;
+        yield return new WaitForSeconds(10f); 
+        canGamble = true;
+        Debug.Log("Gamble spreman ponovo!");
+    }
+    private void ApplyBuff(int type)
+    {
+        switch (type)
+        {
+            case 0: // 3 LIMUNA = Heal
+                Debug.Log("Healed!!!");
+                GetComponent<HealthComponent>().Heal(); 
+                break;
+
+            case 1: // 3 SEDMICE = Damage x3
+                StartCoroutine(DamageBuffRoutine(3f, 5f)); // x3 damage na 5 sekundi
+                break;
+
+            case 2: // 3 BOROVNICE = Speed x2
+                StartCoroutine(SpeedBuffRoutine(2f, 5f)); // x2 brzina na 5 sekundi
+                break;
+        }
+    }
+    IEnumerator DamageBuffRoutine(float multiplier, float duration)
+    {
+        damageMultiplier = multiplier;
+        Debug.Log("DAMAGE BUFF ON!");
+        yield return new WaitForSeconds(duration);
+        damageMultiplier = 1f;
+        Debug.Log("Damage back to normal.");
+    }
+
+    IEnumerator SpeedBuffRoutine(float multiplier, float duration)
+    {
+        moveSpeed = originalMoveSpeed * multiplier;
+        Debug.Log("SPEED BUFF ON!");
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalMoveSpeed;
+        Debug.Log("Speed back to normal.");
     }
 }

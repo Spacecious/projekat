@@ -26,7 +26,11 @@ public class Projectile : MonoBehaviour
 
         if (hc == null) return;
 
-        hc.TakeDamage(100);
+
+        Player playerr = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        int finalDamage = Mathf.RoundToInt(1 * playerr.damageMultiplier); 
+        hc.TakeDamage(finalDamage);
+
 
         if (sender == "player")
         {
