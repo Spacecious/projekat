@@ -47,7 +47,7 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(int damage)
     {
        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-        dmg.Play();
+        //dmg.Play();
     
     if (enemyUI != null)
     {

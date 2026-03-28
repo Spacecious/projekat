@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 6524751900083395668}
   - component: {fileID: 7356273687537628332}
   - component: {fileID: -2831711450642352790}
-  - component: {fileID: 2468385522486329253}
   m_Layer: 0
   m_Name: MalinaMinion
   m_TagString: MalinaMinion
@@ -112,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   MaxHealth: 2
   CurrentHealth: 0
+  dmg: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -226,15 +226,3 @@ MonoBehaviour:
   ammo: 3
   shootInterval: 0.5
   bulletSpeed: 10
---- !u!114 &2468385522486329253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6328714576549871466}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ba9300bd9676948ae0346e8353d2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthUI

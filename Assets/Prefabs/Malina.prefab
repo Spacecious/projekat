@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 4330091966066582627}
   - component: {fileID: 4340290317825375978}
   - component: {fileID: 8661847481864191455}
-  - component: {fileID: 6779834248734525895}
   m_Layer: 0
   m_Name: Malina
   m_TagString: Boss
@@ -175,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   MaxHealth: 60
   CurrentHealth: 0
+  dmg: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -229,15 +229,3 @@ MonoBehaviour:
   moveSpeed: 1
   moveTime: 2
   pauseTime: 0.5
---- !u!114 &6779834248734525895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6985451728899771168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ba9300bd9676948ae0346e8353d2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthUI
