@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     private int Count = 0;
     private HealthComponent playerHealth;
 
+    private bool isStunned = false;
+
     void Awake() 
     {
         playerHealth = GetComponent<HealthComponent>();
@@ -77,7 +79,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isDashing) return;
+        if (isDashing || isStunned) return;
         MovePlayer();
         Shoot();
         HandleDashInput();
@@ -145,7 +147,7 @@ public class Player : MonoBehaviour
         Ammo = 5;
         isReloading = false;
         cd = true; 
-        Debug.Log("Reload zavr�en!");
+        Debug.Log("Reload zavr�en!");
 
     }
 
@@ -169,5 +171,26 @@ public class Player : MonoBehaviour
         
         yield return new WaitForSeconds(slow);
         moveSpeed = 10f;
+    }
+
+    //Monakove metode nove za stun
+
+    public void ApllyStun(float duration)
+    {
+        if (!isStunned)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
+    }
+
+    IEnumerator StunRoutine(float duration)
+    {
+        isStunned = true;
+        Debug.Log("IGRAČ JE STUNOVAN!");
+
+        yield return new WaitForSeconds(duration);
+
+        isStunned = false;
+        Debug.Log("Igrač se oporavio.");
     }
 }

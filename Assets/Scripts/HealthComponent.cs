@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class HealthComponent : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class HealthComponent : MonoBehaviour
     [SerializeField]  int MaxHealth;
 
     public int CurrentHealth;
+
+    public UnityEvent<float> OnHealthChanged;
 
     public int GetHealth()
     {
@@ -21,6 +24,13 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(int damage)
     {
         CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+        OnHealthChanged.Invoke(CurrentHealth);
+
+        KupinaBoss boss = GetComponent<KupinaBoss>();
+        if(boss != null)
+        {
+            boss.UpdateVineCount(CurrentHealth);
+        }
 
         if (CurrentHealth <= 0)
         {
