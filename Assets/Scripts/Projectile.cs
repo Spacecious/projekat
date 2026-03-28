@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         
     }
 
-     void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (sender == "" || collision.CompareTag(sender))
             return;
@@ -57,6 +57,7 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
     void Update()
     {
         
