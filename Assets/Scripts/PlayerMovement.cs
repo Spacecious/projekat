@@ -30,8 +30,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float paddingLeft = 0.5f;
     [SerializeField] private float paddingRight = 0.5f;
-    [SerializeField] private float paddingTop = 5f;
+    [SerializeField] private float paddingTop = 0.5f;
     [SerializeField] private float paddingBottom = 0.5f;
+
+
+
+    [SerializeField] public GameObject dashIcon;
+    [SerializeField] public GameObject gambleIcon;
 
     float moveSpeed = 10.0f;
 
@@ -52,16 +57,12 @@ public class Player : MonoBehaviour
     private HealthComponent playerHealth;
 
 
-    private bool isStunned = false;
-
-
-
     public float damageMultiplier = 1f;
 
     private float originalMoveSpeed;
     private bool canGamble = true;
 
-    private SlotMachineUI slotUI;
+    public SlotMachineUI slotUI;
     private AmmoUI ammoUI;
 
     private AbilitiesCooldownUI abilityUI;
@@ -96,24 +97,24 @@ public class Player : MonoBehaviour
         fireRight=InputSystem.actions.FindAction("ShootRight");
         originalMoveSpeed = moveSpeed;
         InitBounds();
-        slotUI = GameObject.FindAnyObjectByType<SlotMachineUI>();
-        ammoUI = GameObject.FindAnyObjectByType<AmmoUI>();
-        abilityUI = GameObject.FindAnyObjectByType<AbilitiesCooldownUI>();
+        slotUI = GameObject.FindFirstObjectByType<SlotMachineUI>();
+       
+        if (!firstBossDefeated)
+    {
+        if (dashIcon != null) dashIcon.gameObject.SetActive(false);
+        if (gambleIcon != null) gambleIcon.gameObject.SetActive(false);
+        if (slotUI != null) slotUI.gameObject.SetActive(false);
+    }
+    
+
+    UpdateUI();
+        ammoUI = GameObject.FindFirstObjectByType<AmmoUI>();
+        abilityUI = GameObject.FindFirstObjectByType<AbilitiesCooldownUI>();
         if (abilityUI == null)
     {
         Debug.LogError("CRTIČNA GREŠKA: PlayerMovement nije našao AbilityCooldownUI u sceni! Proveri da li je skripta dodata na Canvas.");
     }
-    if (!firstBossDefeated)
-    {
-       
-        GameObject.Find("Dash_Icon").SetActive(false);
-        GameObject.Find("Gamble_Icon").SetActive(false);
-    }
-    else 
-    {
-        Debug.Log("Uspešno povezan Ability Cooldown UI!");
-    }
-        UpdateUI();
+   
     }
 
     private void InitBounds()
@@ -125,7 +126,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isDashing || isStunned) return;
+        if (isDashing) return;
         MovePlayer();
         Shoot();
         if (firstBossDefeated) 
@@ -223,11 +224,7 @@ public class Player : MonoBehaviour
         Ammo = 5;
         isReloading = false;
         cd = true; 
-
-        Debug.Log("Reload zavr�en!");
-
         Debug.Log("Reload zavrsen!");
-
 
     }
 
@@ -254,27 +251,6 @@ public class Player : MonoBehaviour
     }
 
 
-    //Monakove metode nove za stun
-
-    public void ApllyStun(float duration)
-    {
-        if (!isStunned)
-        {
-            StartCoroutine(StunRoutine(duration));
-        }
-    }
-
-    IEnumerator StunRoutine(float duration)
-    {
-        isStunned = true;
-        Debug.Log("IGRAČ JE STUNOVAN!");
-
-        yield return new WaitForSeconds(duration);
-
-        isStunned = false;
-        Debug.Log("Igrač se oporavio.");
-
-    }
     private void ActivateGamble()
     {
 

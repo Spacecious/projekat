@@ -9,6 +9,7 @@ public class HealthComponent : MonoBehaviour
     private GameObject[] heartSprites;
     public int CurrentHealth;
     
+    private EnemyHealthUI enemyUI;
    
 
     public UnityEvent<float> OnHealthChanged;
@@ -24,6 +25,9 @@ public class HealthComponent : MonoBehaviour
         UpdateHeartUI();
         FindHeartsInScene();
         //Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen);
+
+        enemyUI = GetComponentInChildren<EnemyHealthUI>();
+        if(enemyUI != null) enemyUI.SetHealth(CurrentHealth, MaxHealth);
     }
 
     void FindHeartsInScene()
@@ -43,6 +47,12 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(int damage)
     {
        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+    
+    if (enemyUI != null)
+    {
+        enemyUI.SetHealth(CurrentHealth, MaxHealth);
+    }
+
     UpdateHeartUI();
 
     if (CurrentHealth == 0)
@@ -69,17 +79,20 @@ public class HealthComponent : MonoBehaviour
 
     private void UnlockPlayerAbilities()
 {
-    // Postavljamo statičku varijablu koju smo dogovorili
     Player.firstBossDefeated = true;
 
-    // Pronalazimo ikonice i aktiviramo ih
-    GameObject dashIcon = GameObject.Find("DashIcon");
-    GameObject gambleIcon = GameObject.Find("GambleIcon");
+    // Umesto GameObject.Find, nađi Player-a i uzmi njegove reference
+    Player p = Object.FindAnyObjectByType<Player>();
+    if (p != null)
+    {
+        if (p.dashIcon != null) p.dashIcon.SetActive(true);
+        if (p.gambleIcon != null) p.gambleIcon.SetActive(true);
+        
+        // Takođe, uključi Gamble UI
+        if (p.slotUI != null) p.slotUI.gameObject.SetActive(true);
+    }
 
-    if (dashIcon != null) dashIcon.SetActive(true);
-    if (gambleIcon != null) gambleIcon.SetActive(true);
-
-    Debug.Log("BOSS PORAŽEN! Sposobnosti otključane.");
+    Debug.Log("BOSS PORAŽEN! Sposobnosti i UI otključani.");
 }
 
     public void Heal()
