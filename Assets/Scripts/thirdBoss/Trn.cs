@@ -4,7 +4,7 @@ public class Trn : MonoBehaviour
 {
     
     [SerializeField] float speed = 8f;
-    [SerializeField] int damage = 10;
+    [SerializeField] int damage = 1;
     [SerializeField] float lifeTime = 1f;
 
     void Start()
