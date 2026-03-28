@@ -316,8 +316,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PathFinding
   speed: 1
   stopDistance: 1
-  minX: -14
-  maxX: 14
+  minX: -8
+  maxX: 8
   player: {fileID: 716030493}
   seedPrefab: {fileID: 774457973011454126, guid: c3051fe8f1e7f394c884be48edc3b038, type: 3}
   totalSeeds: 10
@@ -423,6 +423,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3486804477561171705, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
+      propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -3486804477561171705, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
       propertyPath: CurrentHealth
       value: 3

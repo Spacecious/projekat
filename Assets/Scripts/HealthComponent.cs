@@ -68,7 +68,7 @@ public class HealthComponent : MonoBehaviour
         if (gameObject.CompareTag("player"))
         {
             Debug.Log("Player je poginuo!");
-            // SceneManager.LoadScene("GameOver"); // Primer
+            SceneManager.LoadScene("mainMenu"); // Primer
         }
 
         Destroy(gameObject);

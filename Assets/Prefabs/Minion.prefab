@@ -201,8 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56948e1bfab9f84d8c411e883f4a822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Kamikaze
-  MinionSpeed: 5
-  TimeBeforeExplosion: 3
-  Damage: 10
+  MinionSpeed: 9
+  TimeBeforeExplosion: 2
+  Damage: 2
   ExplosionRadius: 2
   explosionPrefab: {fileID: 3257703303849921145, guid: bc78dcba2a26c8f4c9e35477f1da868e, type: 3}
