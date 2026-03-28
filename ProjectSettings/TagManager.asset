@@ -6,6 +6,7 @@ TagManager:
   tags:
   - player
   - projectile
+  - shooter
   layers:
   - Default
   - TransparentFX

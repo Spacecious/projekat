@@ -1,14 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MalinaBoss : MonoBehaviour
 {
-    [SerializeField] GameObject regularMinion;
-    [SerializeField] GameObject teleportMinion;
+    [SerializeField] GameObject malinaMinion;
 
     [SerializeField] float spawnCooldown = 3f;
 
     private HealthComponent malinaHealth;
+    private bool isSpawning = true;
 
     void Start()
     {
@@ -18,17 +19,19 @@ public class MalinaBoss : MonoBehaviour
 
     IEnumerator BossLogicRoutine() {
         while (true) {
-            SpawnRegularMinions();
+            if (isSpawning)
+                SpawnMinions();
 
-            if (malinaHealth.GetHealth() <= 100) {
-                SpawnTeleportMinions();
+            if (malinaHealth.GetHealth() <= 4) {
+                isSpawning = false;
+                StartBulletHell();
             }
 
             yield return new WaitForSeconds(spawnCooldown);
         }
     }
 
-    void SpawnRegularMinions() {
+    void SpawnMinions() {
         // malina boss spawnuje dva miniona jednog s leve i jednog s desne strane i to u nekim radnom pozicijama na vrhu ekrana
 
         malinaHealth.TakeDamage(4);
@@ -36,17 +39,11 @@ public class MalinaBoss : MonoBehaviour
         Vector3 minionLeft = new Vector3(Random.Range(5f, 15f), 0, 0);
         Vector3 minionRight = new Vector3(Random.Range(5f, 15f), 0, 0);
 
-        Instantiate(regularMinion, transform.position - minionLeft, Quaternion.identity);
-        Instantiate(regularMinion, transform.position + minionRight, Quaternion.identity);
+        Instantiate(malinaMinion, transform.position - minionLeft, Quaternion.identity);
+        Instantiate(malinaMinion, transform.position + minionRight, Quaternion.identity);
     }
 
-    void SpawnTeleportMinions() { 
-
-    }
-
-
-    void Update()
-    {
-        
+    void StartBulletHell() {
+        SceneManager.LoadScene("BulletHell", LoadSceneMode.Additive);
     }
 }
