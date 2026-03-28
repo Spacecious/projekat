@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
     private int Count = 0;
     private HealthComponent playerHealth;
 
+    private bool isStunned;
+
 
     public float damageMultiplier = 1f;
 
@@ -97,7 +99,7 @@ public class Player : MonoBehaviour
         fireRight=InputSystem.actions.FindAction("ShootRight");
         originalMoveSpeed = moveSpeed;
         InitBounds();
-        slotUI = GameObject.FindFirstObjectByType<SlotMachineUI>();
+        slotUI = GameObject.FindAnyObjectByType<SlotMachineUI>();
        
         if (!firstBossDefeated)
     {
@@ -108,8 +110,8 @@ public class Player : MonoBehaviour
     
 
     UpdateUI();
-        ammoUI = GameObject.FindFirstObjectByType<AmmoUI>();
-        abilityUI = GameObject.FindFirstObjectByType<AbilitiesCooldownUI>();
+        ammoUI = GameObject.FindAnyObjectByType<AmmoUI>();
+        abilityUI = GameObject.FindAnyObjectByType<AbilitiesCooldownUI>();
         if (abilityUI == null)
     {
         Debug.LogError("CRTIČNA GREŠKA: PlayerMovement nije našao AbilityCooldownUI u sceni! Proveri da li je skripta dodata na Canvas.");
@@ -249,7 +251,25 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(slow);
         moveSpeed = 10f;
     }
+    public void ApllyStun(float duration)
+    {
+        if (!isStunned)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
+    }
 
+    IEnumerator StunRoutine(float duration)
+    {
+        isStunned = true;
+        Debug.Log("IGRAČ JE STUNOVAN!");
+
+        yield return new WaitForSeconds(duration);
+
+        isStunned = false;
+        Debug.Log("Igrač se oporavio.");
+
+    }
 
     private void ActivateGamble()
     {

@@ -38,7 +38,7 @@ public class PathFinding : MonoBehaviour
     {
 
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("player"); 
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player"); 
             if (playerObj != null)
                 player = playerObj.transform;
         }
@@ -98,7 +98,7 @@ public class PathFinding : MonoBehaviour
         float randomAngle = Random.Range(120f,240f);
         Quaternion rotation = Quaternion.Euler(0,0,randomAngle);
 
-        GameObject seed = Instantiate(seedPrefab, transform.position - new Vector3(0, 0.5f, 0), rotation);
+        GameObject seed = Instantiate(seedPrefab, transform.position, rotation);
 
         Rigidbody2D rbSeed  = seed.GetComponent<Rigidbody2D>();
         if(rbSeed != null)

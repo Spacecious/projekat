@@ -53,10 +53,14 @@ MonoBehaviour:
   paddingRight: 0.5
   paddingTop: 3
   paddingBottom: 0.5
+  dashIcon: {fileID: 0}
+  gambleIcon: {fileID: 0}
   blinkDistance: 5
   blinkCooldown: 1.5
+  gambleCooldown: 10
   HitToHeal: 4
   damageMultiplier: 1
+  slotUI: {fileID: 0}
 --- !u!58 &6311406557423552471
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,6 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   MaxHealth: 3
+  CurrentHealth: 3
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6610187278635293080
 GameObject:
   m_ObjectHideFlags: 0

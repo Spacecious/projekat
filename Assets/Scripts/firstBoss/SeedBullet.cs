@@ -21,7 +21,7 @@ public class SeedBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("player"))
+        if (other.CompareTag("Player"))
         {
             HealthComponent playerHealth = other.GetComponent<HealthComponent>();
             

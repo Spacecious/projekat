@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
         if (hc == null) return;
 
 
-        Player playerr = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        Player playerr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         int finalDamage = Mathf.RoundToInt(1 * playerr.damageMultiplier); 
         hc.TakeDamage(finalDamage);
 
@@ -47,9 +47,9 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        if (sender == "player")
+        if (sender == "Player")
         {
-            Player player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             if (player != null) {
                 player.RegisterHit();
             }

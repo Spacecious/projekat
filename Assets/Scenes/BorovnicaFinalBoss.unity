@@ -410,6 +410,18 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5449817960637515079, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
   m_PrefabInstance: {fileID: 2004035522}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1591338233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591338224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c141276697d602a4db822a6a72013da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss2Defeat
 --- !u!1001 &2004035522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -494,6 +506,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: MaxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: CurrentHealth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 7143537480022206118, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
@@ -505,6 +525,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5010538466055692698, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1591338229}
+    - targetCorrespondingSourceObject: {fileID: 5010538466055692698, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1591338233}
   m_SourcePrefab: {fileID: 100100000, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
 --- !u!1 &2060636142
 GameObject:
@@ -554,6 +577,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   MaxHealth: 100
   CurrentHealth: 100
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &2060636145
 Rigidbody2D:
   serializedVersion: 5
@@ -651,9 +677,14 @@ MonoBehaviour:
   paddingRight: 0.5
   paddingTop: 5
   paddingBottom: 0.5
+  dashIcon: {fileID: 0}
+  gambleIcon: {fileID: 0}
   blinkDistance: 5
   blinkCooldown: 1.5
+  gambleCooldown: 10
   HitToHeal: 4
+  damageMultiplier: 1
+  slotUI: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
