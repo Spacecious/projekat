@@ -401,7 +401,7 @@ MonoBehaviour:
   smokeBomb: {fileID: 6428377651202343089, guid: 0f2e806a4793f5243a9f06af57b1aa09, type: 3}
   ClonePrefab: {fileID: 5010538466055692698, guid: 6583b9c2bb96989488072d19effe0890, type: 3}
   NumberOfClones: 2
-  HPStep: 500
+  HPStep: 4
   amplitude: 0.8
   frequency: 1
   summon: {fileID: 1591338232}
@@ -508,11 +508,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: MaxHealth
-      value: 1
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: CurrentHealth
-      value: 1
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -575,8 +575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 100
-  CurrentHealth: 100
+  MaxHealth: 3
+  CurrentHealth: 3
+  dmg: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

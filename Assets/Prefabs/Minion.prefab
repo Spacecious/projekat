@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56948e1bfab9f84d8c411e883f4a822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Kamikaze
-  MinionSpeed: 9
+  MinionSpeed: 8
   TimeBeforeExplosion: 2
   Damage: 2
   ExplosionRadius: 2

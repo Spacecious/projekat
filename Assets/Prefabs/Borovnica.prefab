@@ -118,8 +118,8 @@ MonoBehaviour:
   SpawnInterval: 5
   smokeBomb: {fileID: 0}
   ClonePrefab: {fileID: 5010538466055692698, guid: 6583b9c2bb96989488072d19effe0890, type: 3}
-  NumberOfClones: 3
-  HPStep: 50
+  NumberOfClones: 2
+  HPStep: 4
   amplitude: 0.8
   frequency: 1
   summon: {fileID: 5449817960637515079}
