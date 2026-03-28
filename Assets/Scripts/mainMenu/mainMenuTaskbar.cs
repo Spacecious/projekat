@@ -41,7 +41,7 @@ public class mainMenuTaskbar : MonoBehaviour
 
     public void OnClick()
     {
-        if(isClicked == false)
+        if (isClicked == false)
         {
             taskBar.SetActive(true);
             isClicked = true;
@@ -51,7 +51,7 @@ public class mainMenuTaskbar : MonoBehaviour
             taskBar.SetActive(false);
             isClicked = false;
         }
-        
+
     }
 
     public void Quit()
@@ -75,7 +75,7 @@ public class mainMenuTaskbar : MonoBehaviour
         SceneManager.LoadScene("Slobodan");
     }
 
-    
+
     public void secondBoss()
     {
         int screenWidth = Display.main.systemWidth;
@@ -90,8 +90,8 @@ public class mainMenuTaskbar : MonoBehaviour
         IntPtr handle = GetActiveWindow();
         SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
         SceneManager.LoadScene("BorovnicaFinalBoss");
-    } 
-        
+    }
+
     public void thirdBoss()
     {
         int screenWidth = Display.main.systemWidth;
@@ -113,6 +113,12 @@ public class mainMenuTaskbar : MonoBehaviour
         isVisible = !isVisible;
         notesSlika.gameObject.SetActive(isVisible);
         notesText.gameObject.SetActive(isVisible);
+    }
+
+    public void fourthBoss()
+    {
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        SceneManager.LoadScene("Malina");
     }
 }
 

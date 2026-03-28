@@ -1,6 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
@@ -47,9 +48,10 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(int damage)
     {
        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-        //dmg.Play();
-    
-    if (enemyUI != null)
+        dmg.pitch = Random.Range(0.8f, 1.2f);
+        dmg.Play();
+
+        if (enemyUI != null)
     {
         enemyUI.SetHealth(CurrentHealth, MaxHealth);
     }
@@ -58,8 +60,9 @@ public class HealthComponent : MonoBehaviour
 
     if (CurrentHealth == 0)
     {
-        // 1. Proveravamo da li je uništeni objekat Boss pomoću Taga
-        if (gameObject.CompareTag("Boss")) 
+            SceneManager.LoadScene("mainMenu");
+            // 1. Proveravamo da li je uništeni objekat Boss pomoću Taga
+            if (gameObject.CompareTag("Boss")) 
         {
             UnlockPlayerAbilities();
         }
@@ -68,7 +71,7 @@ public class HealthComponent : MonoBehaviour
         if (gameObject.CompareTag("player"))
         {
             Debug.Log("Player je poginuo!");
-            SceneManager.LoadScene("mainMenu"); // Primer
+             // Primer
         }
 
         Destroy(gameObject);
