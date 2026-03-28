@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mainMenu.unity
     guid: f4bbbbff5befb4d4080bc06629d61dea
+  - enabled: 1
+    path: Assets/Scenes/Kupina.unity
+    guid: 972a4cf625d99114180311aeb2ee5f67
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

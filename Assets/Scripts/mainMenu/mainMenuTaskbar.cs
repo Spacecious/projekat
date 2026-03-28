@@ -56,9 +56,18 @@ public class mainMenuTaskbar : MonoBehaviour
 
     public void firstBoss()
     {
-        Screen.SetResolution(640, 320, FullScreenMode.Windowed);
+        int screenWidth = Display.main.systemWidth;
+        int screenHeight = Display.main.systemHeight;
+
+        int windowWidth = 860;
+        int windowHeight = 540;
+
+        int posX = 140;
+        int posY = 540;
+
+        IntPtr handle = GetActiveWindow();
+        SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
         SceneManager.LoadScene("Slobodan");
-        
     }
 
     
@@ -67,23 +76,31 @@ public class mainMenuTaskbar : MonoBehaviour
         int screenWidth = Display.main.systemWidth;
         int screenHeight = Display.main.systemHeight;
 
-        int windowWidth = 1280;
+        int windowWidth = 960;
         int windowHeight = 640;
 
-        int posX = 0;
+        int posX = 120;
+        int posY = 0;
+
+        IntPtr handle = GetActiveWindow();
+        SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
+        SceneManager.LoadScene("BorovnicaFinalBoss");
+    } 
+        
+    public void thirdBoss()
+    {
+        int screenWidth = Display.main.systemWidth;
+        int screenHeight = Display.main.systemHeight;
+
+        int windowWidth = 1280;
+        int windowHeight = 840;
+
+        int posX = 640;
         int posY = 0;
 
         IntPtr handle = GetActiveWindow();
         SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
         SceneManager.LoadScene("BorovnicaFinalBoss");
     }
-}  
-        
-    
-
-   /* public void thirdBoss()
-    {
-        SceneManager.LoadScene("Slobodan");
-        Screen.SetResolution(640, 320, FullScreenMode.Windowed);
-    }*/
+}
 
