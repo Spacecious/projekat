@@ -30,8 +30,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float paddingLeft = 0.5f;
     [SerializeField] private float paddingRight = 0.5f;
-    [SerializeField] private float paddingTop = 5f;
+    [SerializeField] private float paddingTop = 0.5f;
     [SerializeField] private float paddingBottom = 0.5f;
+
+
+
+    [SerializeField] public GameObject dashIcon;
+    [SerializeField] public GameObject gambleIcon;
 
     float moveSpeed = 10.0f;
 
@@ -57,7 +62,7 @@ public class Player : MonoBehaviour
     private float originalMoveSpeed;
     private bool canGamble = true;
 
-    private SlotMachineUI slotUI;
+    public SlotMachineUI slotUI;
     private AmmoUI ammoUI;
 
     private AbilitiesCooldownUI abilityUI;
@@ -93,23 +98,23 @@ public class Player : MonoBehaviour
         originalMoveSpeed = moveSpeed;
         InitBounds();
         slotUI = GameObject.FindFirstObjectByType<SlotMachineUI>();
+       
+        if (!firstBossDefeated)
+    {
+        if (dashIcon != null) dashIcon.gameObject.SetActive(false);
+        if (gambleIcon != null) gambleIcon.gameObject.SetActive(false);
+        if (slotUI != null) slotUI.gameObject.SetActive(false);
+    }
+    
+
+    UpdateUI();
         ammoUI = GameObject.FindFirstObjectByType<AmmoUI>();
         abilityUI = GameObject.FindFirstObjectByType<AbilitiesCooldownUI>();
         if (abilityUI == null)
     {
         Debug.LogError("CRTIČNA GREŠKA: PlayerMovement nije našao AbilityCooldownUI u sceni! Proveri da li je skripta dodata na Canvas.");
     }
-    if (!firstBossDefeated)
-    {
-       
-        GameObject.Find("DashIcon").SetActive(false);
-        GameObject.Find("GambleIcon").SetActive(false);
-    }
-    else 
-    {
-        Debug.Log("Uspešno povezan Ability Cooldown UI!");
-    }
-        UpdateUI();
+   
     }
 
     private void InitBounds()
