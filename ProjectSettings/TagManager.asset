@@ -6,7 +6,8 @@ TagManager:
   tags:
   - player
   - projectile
-  - shooter
+  - MalinaMinion
+  - Shooter
   layers:
   - Default
   - TransparentFX

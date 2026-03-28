@@ -17,5 +17,5 @@ MonoBehaviour:
   bulletSpeed: 5
   startAngle: 150
   endAngle: 210
-  timeBetweenBursts: 1
-  totalBursts: 5
+  timeBetweenBursts: 1.5
+  totalBursts: 10

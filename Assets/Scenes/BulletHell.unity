@@ -271,6 +271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square
       objectReference: {fileID: 0}
+    - target: {fileID: 8703957492387654592, guid: 455033354389ff645a6ef6ad06423e5f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -288,6 +292,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooter
       objectReference: {fileID: 0}
+    - target: {fileID: 5857620879884061305, guid: a46a0993d92e3bd4186eed066d30ddf7, type: 3}
+      propertyPath: patterns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857620879884061305, guid: a46a0993d92e3bd4186eed066d30ddf7, type: 3}
+      propertyPath: 'patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e12f42d9bdb5e0c478f2493286458c15, type: 2}
+    - target: {fileID: 5857620879884061305, guid: a46a0993d92e3bd4186eed066d30ddf7, type: 3}
+      propertyPath: 'patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 41fb004443c849749b82313551826cbb, type: 2}
+    - target: {fileID: 5857620879884061305, guid: a46a0993d92e3bd4186eed066d30ddf7, type: 3}
+      propertyPath: 'patterns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 020b423ff14a9ca4ab8486a920f3c1f7, type: 2}
+    - target: {fileID: 5857620879884061305, guid: a46a0993d92e3bd4186eed066d30ddf7, type: 3}
+      propertyPath: 'patterns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 41fb004443c849749b82313551826cbb, type: 2}
     - target: {fileID: 7098906627327465687, guid: a46a0993d92e3bd4186eed066d30ddf7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

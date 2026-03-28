@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3843881247220410936}
   - component: {fileID: 3125899423554882100}
   - component: {fileID: 4330091966066582627}
+  - component: {fileID: 4340290317825375978}
+  - component: {fileID: 8661847481864191455}
   m_Layer: 0
   m_Name: Malina
   m_TagString: Untagged
@@ -184,6 +186,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335cba3e8ba538748bbbf54131fd6238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MalinaBoss
-  regularMinion: {fileID: 6328714576549871466, guid: 5c90b463df586db47b34745180a3f324, type: 3}
-  teleportMinion: {fileID: 0}
+  malinaMinion: {fileID: 0}
   spawnCooldown: 8
+  healAmount: 2
+--- !u!114 &4340290317825375978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985451728899771168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b2e636b72e34f4181dfc6d5a5cc573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootAtPlayer
+  projectile: {fileID: 0}
+  reloadSpeed: 3
+  ammo: 30
+  shootInterval: 0.5
+  bulletSpeed: 10
+--- !u!114 &8661847481864191455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985451728899771168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3deed2655b79e094abc06b9a5ca773c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomMovement
+  paddingLeft: 0.5
+  paddingRight: 0.5
+  paddingTop: 0.5
+  paddingBottom: 0.5
+  moveSpeed: 1
+  moveTime: 2
+  pauseTime: 0.5

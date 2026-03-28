@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 8947150927459006621}
   - component: {fileID: 349597935964366652}
   - component: {fileID: 6524751900083395668}
+  - component: {fileID: 7356273687537628332}
+  - component: {fileID: -2831711450642352790}
   m_Layer: 0
   m_Name: MalinaMinion
-  m_TagString: Untagged
+  m_TagString: MalinaMinion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6328714576549871466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.92258, y: -0.51463, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -121,16 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a510d5de2827b5440b031945efeb78ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MalinaMinion
-  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
-  paddingLeft: 0.5
-  paddingRight: 0.5
-  paddingTop: 0.5
-  paddingBottom: 0.5
-  moveSpeed: 3
-  reloadSpeed: 1
-  ammo: 3
-  shootInterval: 0.5
-  bulletSpeed: 10
 --- !u!50 &349597935964366652
 Rigidbody2D:
   serializedVersion: 5
@@ -194,3 +186,39 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &7356273687537628332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328714576549871466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3deed2655b79e094abc06b9a5ca773c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomMovement
+  paddingLeft: 0.5
+  paddingRight: 0.5
+  paddingTop: 0.5
+  paddingBottom: 0.5
+  moveSpeed: 2
+  moveTime: 1
+  pauseTime: 0.5
+--- !u!114 &-2831711450642352790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328714576549871466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b2e636b72e34f4181dfc6d5a5cc573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootAtPlayer
+  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
+  reloadSpeed: 1
+  ammo: 3
+  shootInterval: 0.5
+  bulletSpeed: 10

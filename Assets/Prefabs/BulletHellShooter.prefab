@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1346342788452997781}
   m_Layer: 0
   m_Name: BulletHellShooter
-  m_TagString: Untagged
+  m_TagString: Shooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

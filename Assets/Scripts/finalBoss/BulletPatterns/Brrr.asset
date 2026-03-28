@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 398d7ef6306aae440a9e86609f77ffd3, type: 3}
-  m_Name: BulletPatternConfig 2
+  m_Name: Brrr
   m_EditorClassIdentifier: Assembly-CSharp::BulletPatternConfig
   projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
-  bulletCount: 10
+  bulletCount: 2
   bulletSpeed: 5
   startAngle: 0
   endAngle: 360
-  timeBetweenBursts: 1
-  totalBursts: 5
+  timeBetweenBursts: 0.15
+  totalBursts: 30
