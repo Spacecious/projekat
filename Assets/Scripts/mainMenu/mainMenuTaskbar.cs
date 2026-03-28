@@ -5,11 +5,16 @@ using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class mainMenuTaskbar : MonoBehaviour
 {
     public GameObject taskBar;
     bool isClicked = false;
+
+    public Image notesSlika;
+    public TextMeshProUGUI notesText;
+    private bool isVisible = false;
 
     [DllImport("user32.dll")]
     static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
@@ -101,6 +106,13 @@ public class mainMenuTaskbar : MonoBehaviour
         IntPtr handle = GetActiveWindow();
         SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
         SceneManager.LoadScene("Kupina");
+    }
+
+    public void noteApp()
+    {
+        isVisible = !isVisible;
+        notesSlika.gameObject.SetActive(isVisible);
+        notesText.gameObject.SetActive(isVisible);
     }
 }
 

@@ -10,6 +10,8 @@ public class KupinaBoss : MonoBehaviour
     [SerializeField] GameObject vinePrefab;
     [SerializeField] float vineInterval = 6f;
 
+    public Animator animator;
+
     [SerializeField] int minVines = 3;
     [SerializeField] int maxVines = 6;
 
@@ -22,6 +24,8 @@ public class KupinaBoss : MonoBehaviour
     [SerializeField] float shieldDuration = 3f;
     [SerializeField] float reflectDamage = 20f;
 
+    
+
     private HealthComponent myHealth;
     private int currentNumberOfVines;
     public bool isShieldActive { get; private set; } = false;
@@ -33,9 +37,11 @@ public class KupinaBoss : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         myHealth = GetComponent<HealthComponent>();
         maxHealth = myHealth.GetHealth();
         currentNumberOfVines = minVines;
+        ShootGranata();
     }
 
     
@@ -78,7 +84,8 @@ public class KupinaBoss : MonoBehaviour
 
     void ShootGranata()
     {
-        if(granataPrefab != null)
+        animator.SetTrigger("Granata");
+        if (granataPrefab != null)
         {
             
             Instantiate(granataPrefab, transform.position, Quaternion.identity);
@@ -88,7 +95,8 @@ public class KupinaBoss : MonoBehaviour
 
     void SpawnVineTraps()
     {
-        for(int i = 0; i < currentNumberOfVines; i++)
+        animator.SetTrigger("Vine");
+        for (int i = 0; i < currentNumberOfVines; i++)
         {
             float randX = Random.Range(minX, maxX);
             float randY = Random.Range(minY, maxY);
