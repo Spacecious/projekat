@@ -16,6 +16,7 @@ public class MalinaBoss : MonoBehaviour
 
     private bool isSpawning = true;
     private bool finalPhase = false;
+    private bool bossStart = true;
 
     void Start()
     {
@@ -31,6 +32,11 @@ public class MalinaBoss : MonoBehaviour
 
     IEnumerator BossLogicRoutine() {
         while (true) {
+            if (bossStart) {
+                bossStart = false;
+                yield return new WaitForEndOfFrame();
+            }
+
             if (isSpawning) {
                 SpawnMinions();
                 yield return new WaitForSeconds(spawnCooldown);
