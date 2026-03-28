@@ -55,6 +55,7 @@ MonoBehaviour:
   paddingBottom: 0.5
   blinkDistance: 5
   blinkCooldown: 1.5
+  gambleCooldown: 10
   HitToHeal: 4
   damageMultiplier: 1
 --- !u!58 &6311406557423552471
@@ -132,7 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 3
+  MaxHealth: 10000
+  CurrentHealth: 0
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6610187278635293080
 GameObject:
   m_ObjectHideFlags: 0
