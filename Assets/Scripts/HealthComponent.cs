@@ -46,8 +46,8 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-        dmg.Play();
+       CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+        //dmg.Play();
     
     if (enemyUI != null)
     {
@@ -65,7 +65,7 @@ public class HealthComponent : MonoBehaviour
         }
 
         // 2. Ako je uništen Player, možda želiš da učitaš Game Over scenu
-        if (gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("player"))
         {
             Debug.Log("Player je poginuo!");
             SceneManager.LoadScene("mainMenu"); // Primer

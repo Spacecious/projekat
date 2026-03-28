@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   MaxHealth: 2
-  CurrentHealth: 2
+  CurrentHealth: 0
   dmg: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
@@ -137,7 +137,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 6328714576549871466}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
@@ -152,7 +152,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!58 &6524751900083395668
 CircleCollider2D:

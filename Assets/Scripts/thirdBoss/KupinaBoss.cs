@@ -36,7 +36,6 @@ public class KupinaBoss : MonoBehaviour
         myHealth = GetComponent<HealthComponent>();
         maxHealth = myHealth.GetHealth();
         currentNumberOfVines = minVines;
-        ShootGranata();
     }
 
     
