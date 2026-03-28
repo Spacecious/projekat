@@ -30,6 +30,13 @@ public class Granata : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed*Time.deltaTime);
         }
+
+        float DistanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (DistanceToPlayer <= 3f)
+        {
+            Explode();
+        }
     }
 
     void Explode()

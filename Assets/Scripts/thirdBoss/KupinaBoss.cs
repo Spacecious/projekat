@@ -20,7 +20,7 @@ public class KupinaBoss : MonoBehaviour
 
     [SerializeField] float shieldCooldown = 10f;
     [SerializeField] float shieldDuration = 3f;
-    [SerializeField] float reflectDamage = 10f;
+    [SerializeField] float reflectDamage = 20f;
 
     private HealthComponent myHealth;
     private int currentNumberOfVines;
@@ -80,6 +80,7 @@ public class KupinaBoss : MonoBehaviour
     {
         if(granataPrefab != null)
         {
+            
             Instantiate(granataPrefab, transform.position, Quaternion.identity);
             Debug.Log("Kupina je ispalila granatu!");
         }

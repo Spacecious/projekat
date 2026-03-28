@@ -263,10 +263,12 @@ public class Player : MonoBehaviour
     {
         isStunned = true;
         Debug.Log("IGRAČ JE STUNOVAN!");
+        moveSpeed = 0f;
 
         yield return new WaitForSeconds(duration);
 
         isStunned = false;
+        moveSpeed = 10f;
         Debug.Log("Igrač se oporavio.");
 
     }
