@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         DashAction = InputSystem.actions.FindAction("Dash");
         gambleAction = InputSystem.actions.FindAction("Gamble");
-        fireUp=InputSystem.actions.FindAction("Jump");
+        fireUp=InputSystem.actions.FindAction("ShootUp");
         fireDown=InputSystem.actions.FindAction("ShootDown");
         fireLeft=InputSystem.actions.FindAction("ShootLeft");
         fireRight=InputSystem.actions.FindAction("ShootRight");
