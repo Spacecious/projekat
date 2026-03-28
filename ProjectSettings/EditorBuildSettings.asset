@@ -26,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kupina.unity
     guid: 972a4cf625d99114180311aeb2ee5f67
+  - enabled: 1
+    path: Assets/Scenes/Malina.unity
+    guid: 178234f21ef30df42a77ed38be7a2171
+  - enabled: 1
+    path: Assets/Scenes/BulletHell.unity
+    guid: 93e1c848947a0864d9edb6e1332e9f1a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

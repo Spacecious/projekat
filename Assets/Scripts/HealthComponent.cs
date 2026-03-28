@@ -104,6 +104,10 @@ public class HealthComponent : MonoBehaviour
         UpdateHeartUI();
     }
 
+    public void Heal(int health) {
+        CurrentHealth += health;
+    }
+
     void Update()
     {
         
