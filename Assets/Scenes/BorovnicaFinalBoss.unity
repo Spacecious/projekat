@@ -395,25 +395,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af53267555fc5d043a070db3f5e982f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  animator: {fileID: 0}
   MinionPrefab: {fileID: 6217869615132484980, guid: f0ee36102846e8b4091605e835a105eb, type: 3}
   SpawnInterval: 5
+  smokeBomb: {fileID: 6428377651202343089, guid: 0f2e806a4793f5243a9f06af57b1aa09, type: 3}
   ClonePrefab: {fileID: 5010538466055692698, guid: 6583b9c2bb96989488072d19effe0890, type: 3}
   NumberOfClones: 2
-  HPStep: 50
---- !u!114 &1591338230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  HPStep: 500
+  amplitude: 0.8
+  frequency: 1
+  summon: {fileID: 1591338232}
+--- !u!82 &1591338232 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5449817960637515079, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+  m_PrefabInstance: {fileID: 2004035522}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591338224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 0
-  CurrentHealth: 0
 --- !u!1001 &2004035522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,11 +420,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1146202247528976358, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1146202247528976358, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1146202247528976358, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       propertyPath: m_LocalPosition.x
@@ -490,19 +486,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Borovnica
       objectReference: {fileID: 0}
+    - target: {fileID: 6182194275276230851, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8382906315255163898, guid: e07d7b4436b50be4b96fa53b226149f4, type: 3}
+    - target: {fileID: 6182194275276230851, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 7143537480022206118, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
     - {fileID: 3012764586380342331, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3522430545397060701, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5010538466055692698, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1591338229}
-    - targetCorrespondingSourceObject: {fileID: 5010538466055692698, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1591338230}
   m_SourcePrefab: {fileID: 100100000, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
 --- !u!1 &2060636142
 GameObject:
@@ -537,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1892e8c9c9fd3e84c826e0539838c6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
-  rb: {fileID: 0}
+  rb: {fileID: 8609466659710488767, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
 --- !u!114 &2060636144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,8 +552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 0
-  CurrentHealth: 0
+  MaxHealth: 100
+  CurrentHealth: 100
 --- !u!50 &2060636145
 Rigidbody2D:
   serializedVersion: 5
@@ -644,7 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c84ddb5124abe2408223915a5e22c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  projectile: {fileID: 0}
+  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
   paddingLeft: 0.5
   paddingRight: 0.5
   paddingTop: 5

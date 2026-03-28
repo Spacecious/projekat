@@ -26,7 +26,11 @@ public class Projectile : MonoBehaviour
 
         if (hc == null) return;
 
-        hc.TakeDamage(10);
+
+        Player playerr = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        int finalDamage = Mathf.RoundToInt(1 * playerr.damageMultiplier); 
+        hc.TakeDamage(finalDamage);
+
 
         KupinaBoss boss = collision.GetComponent<KupinaBoss>();
         if(boss != null && boss.isShieldActive)

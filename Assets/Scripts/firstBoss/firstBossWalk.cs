@@ -11,30 +11,37 @@ public class firstBossWalk : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        pf = animator.GetComponent <PathFinding>();
+        pf = animator.GetComponentInParent<PathFinding>();
         
+
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (pf.player == null) return;
 
+
         if (cooldownTimer > 0)
-        {
             cooldownTimer -= Time.deltaTime;
-        }
 
         float dist = Mathf.Abs(pf.player.position.x - pf.transform.position.x);
 
-        if (dist <= pf.stopDistance && cooldownTimer <= 0)
+        if (dist > pf.stopDistance)
         {
-            animator.SetTrigger("Attack");
-            cooldownTimer = attackCooldown;
-            pf.speed = 0f;
+
+            pf.MoveTowardsPlayer();
         }
         else
         {
-            pf.MoveTowardsPlayer();
+
+            pf.speed = 0f;
+
+
+            if (cooldownTimer <= 0)
+            {
+                animator.SetTrigger("Attack");
+                cooldownTimer = attackCooldown;
+            }
         }
     }
 

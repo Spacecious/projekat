@@ -16,7 +16,7 @@ public class removeBorder : MonoBehaviour
     private const int GWL_STYLE = -16;
     private const int WS_CAPTION = 0x00C00000; // The title bar
     private const int WS_THICKFRAME = 0x00040000; // The resize border
-    void Start()
+    void Awake()
     {
         IntPtr hWnd = GetActiveWindow();
         int style = GetWindowLong(hWnd, GWL_STYLE);

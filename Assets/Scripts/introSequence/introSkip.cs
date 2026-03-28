@@ -11,6 +11,7 @@ public class introSkip : MonoBehaviour
 
     public void SceneChange()
     {
+
         StartCoroutine(ChangeSceneRoutine());
         
     }
@@ -23,7 +24,9 @@ public class introSkip : MonoBehaviour
         
         SceneManager.LoadScene("mainMenu");
 
-        
+
+
+
     }
 
     void Update()
