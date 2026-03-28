@@ -11,7 +11,7 @@ public class KupinaBoss : MonoBehaviour
     [SerializeField] float vineInterval = 6f;
 
     [SerializeField] int minVines = 3;
-    [SerializeField] int maxVines = 10;
+    [SerializeField] int maxVines = 6;
 
     [SerializeField] float minX; 
     [SerializeField] float maxX; 

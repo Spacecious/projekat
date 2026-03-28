@@ -59,7 +59,7 @@ public class PathFinding : MonoBehaviour
     public void Attack(int attackCount)
     {
         Debug.Log("Attack called! Count: " + attackCount);
-        if (attackCount % 5 == 0 && attackCount != 0)
+        if (attackCount % 2 == 0 && attackCount != 0)
         {
             StartCoroutine(JamSpamRoutine());
         }
