@@ -15,6 +15,8 @@ public class MalinaBoss : MonoBehaviour
     private ShootAtPlayer shooter;
     private Collider2D bossCollider;
 
+    public Animator animator;
+
     private bool isSpawning = true;
     private bool finalPhase = false;
     private bool bossStart = true;
@@ -27,7 +29,7 @@ public class MalinaBoss : MonoBehaviour
 
         mover = GetComponent<RandomMovement>();
         shooter = GetComponent<ShootAtPlayer>();
-
+        animator = GetComponent<Animator>();
         StartCoroutine(BossLogicRoutine());
     }
 
@@ -73,7 +75,7 @@ public class MalinaBoss : MonoBehaviour
 
     void SpawnMinions() {
         // malina boss spawnuje dva miniona jednog s leve i jednog s desne strane i to u nekim radnom pozicijama na vrhu ekrana
-
+        animator.SetTrigger("Summon");
         malinaHealth.TakeDamage(4);
 
         Vector3 minionLeft = new Vector3(Random.Range(5f, 12.5f), 0, 0);
