@@ -75,6 +75,11 @@ public class mainMenuTaskbar : MonoBehaviour
         IntPtr handle = GetActiveWindow();
         SetWindowPos(handle, IntPtr.Zero, posX, posY, windowWidth, windowHeight, 0);
         
+
+        
+      
+        Process.Start(Application.dataPath.Replace("_Data", ".exe"), "-scene mainMenu"); 
+         
          SceneManager.LoadScene("Slobodan");
          }
 
