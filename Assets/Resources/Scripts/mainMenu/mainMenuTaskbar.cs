@@ -78,7 +78,7 @@ public class mainMenuTaskbar : MonoBehaviour
 
         
       
-        Process.Start(Application.dataPath.Replace("_Data", ".exe"), "-scene mainMenu"); 
+         
          
          SceneManager.LoadScene("Slobodan");
          }
@@ -125,7 +125,7 @@ public class mainMenuTaskbar : MonoBehaviour
 
     public void fourthBoss()
     {
-        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow);
         SceneManager.LoadScene("Malina");
     }
 }

@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 30
+  MaxHealth: 1
   CurrentHealth: 0
   dmg: {fileID: 0}
   OnHealthChanged:
@@ -195,6 +195,7 @@ MonoBehaviour:
   spawnCooldown: 5
   spawnReduction: 0.25
   healAmount: 2
+  animator: {fileID: 0}
 --- !u!114 &4340290317825375978
 MonoBehaviour:
   m_ObjectHideFlags: 0

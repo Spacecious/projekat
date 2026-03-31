@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8595273581156830938}
   m_Layer: 0
   m_Name: Kupina
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,6 +206,7 @@ MonoBehaviour:
   spwanRate: 4
   vinePrefab: {fileID: 1740049083151048660, guid: d3f828ddd1c600a4db6a835eeecd5420, type: 3}
   vineInterval: 6
+  animator: {fileID: 0}
   minVines: 3
   maxVines: 10
   minX: -8
@@ -227,8 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 30
+  MaxHealth: 1
   CurrentHealth: 30
+  dmg: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:

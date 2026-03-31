@@ -33,19 +33,7 @@ public class Projectile : MonoBehaviour
 
 
         KupinaBoss boss = collision.GetComponent<KupinaBoss>();
-        if(boss != null && boss.isShieldActive)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if(playerObj != null)
-            {
-                HealthComponent playerHealth = playerObj.GetComponent<HealthComponent>();
-                if(playerHealth != null)
-                {
-                    playerHealth.TakeDamage((int)boss.GetReflectDamage());
-                    Debug.Log("THORNS! Igrač je primio reflect damage!");
-                }
-            }
-        }
+        
 
         if (sender == "Player")
         {

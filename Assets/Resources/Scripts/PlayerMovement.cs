@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
     private Vector2 minBounds;
     private Vector2 maxBounds;
 
+    [SerializeField] AudioSource reload;
 
     Vector3 moveInput;
 
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour {
     private Boolean cd = true;
     private bool isReloading = false;
 
-    AudioSource reload;
+    
 
 
     [SerializeField] float blinkDistance = 5f;
@@ -205,7 +206,9 @@ public class Player : MonoBehaviour {
         
         yield return new WaitForSeconds(1f);
 
+        reload.Play();
         Ammo = 5;
+
         ammoUI.UpdateAmmoDisplay(Ammo);
         isReloading = false;
         cd = true;

@@ -61,26 +61,10 @@ public class KupinaBoss : MonoBehaviour
             vineTimer = 0;
         }
 
-        shieldTimer += Time.deltaTime;
-        if (shieldTimer >= shieldCooldown && !isShieldActive)
-        {
-            StartCoroutine(ActivateShieldRoutine());
-            shieldTimer = 0;
-        }
     }
 
-    private IEnumerator ActivateShieldRoutine()
-    {
-        isShieldActive = true;
-        Debug.Log("THORNS ŠTIT AKTIVAN! Ne pucaj!");
+    
 
-        yield return new WaitForSeconds(shieldDuration);
-
-        isShieldActive = false;
-        Debug.Log("Thorns štit ugašen.");
-    }
-
-    public float GetReflectDamage() => reflectDamage;
 
     void ShootGranata()
     {
