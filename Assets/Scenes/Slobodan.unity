@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b213f89b3964c04f83264f3c88c01b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFinding
-  speed: 1
+  speed: 6
   stopDistance: 1
   minX: -8
   maxX: 8
@@ -455,8 +455,12 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1146202247528976358, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.7207
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146202247528976358, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0503
       objectReference: {fileID: 0}
     - target: {fileID: 1146202247528976358, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
       propertyPath: m_LocalPosition.y
@@ -493,6 +497,14 @@ PrefabInstance:
     - target: {fileID: 1146202247528976358, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185963130701210195, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
+      propertyPath: m_Size.x
+      value: 0.36518663
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185963130701210195, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0024963915
       objectReference: {fileID: 0}
     - target: {fileID: 4185963130701210195, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -544,6 +556,10 @@ PrefabInstance:
     - target: {fileID: -3486804477561171705, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
       propertyPath: CurrentHealth
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829805007552425260, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
+      propertyPath: blinkCooldown
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3722780808976444051, guid: 1ef4245d7e0f8c840b45521a8ca68865, type: 3}
       propertyPath: m_Name
