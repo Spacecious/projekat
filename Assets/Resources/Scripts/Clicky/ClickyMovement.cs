@@ -23,6 +23,8 @@ public class ClickyMovement : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private ShootAtPlayer shooter;
 
+    public HealthComponent clickyHealth;
+
     private Vector2 minBounds;
     private Vector2 maxBounds;
     private List<Vector3> waypoints = new List<Vector3>();
@@ -30,6 +32,8 @@ public class ClickyMovement : MonoBehaviour
     private bool isDashing = false;
 
     void Start() {
+        clickyHealth = GetComponent<HealthComponent>();
+
         InitBounds();
         GenerateWaypoints();
         StartCoroutine(MoveRoutine());
