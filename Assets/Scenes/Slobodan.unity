@@ -417,17 +417,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b213f89b3964c04f83264f3c88c01b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFinding
-  speed: 6
+  speed: 20
   stopDistance: 1
   minX: -8
   maxX: 8
   player: {fileID: 716030493}
   seedPrefab: {fileID: 774457973011454126, guid: c3051fe8f1e7f394c884be48edc3b038, type: 3}
-  totalSeeds: 10
+  totalSeeds: 15
   burstDuration: 3
   jamPrefab: {fileID: 330168169870355151, guid: 9b9cac87b85a1274daf69a2babb7ea93, type: 3}
   jamCount: 5
   followSmoothness: 5
+  damageDistance: 2
+  damageCooldown: 1
   smokeBomb: {fileID: 6428377651202343089, guid: 0f2e806a4793f5243a9f06af57b1aa09, type: 3}
 --- !u!4 &716030493 stripped
 Transform:
