@@ -12,4 +12,10 @@ public class BulletPatternConfig : ScriptableObject
 
     public float timeBetweenBursts = 1f;
     public int totalBursts = 5;
+
+
+    public bool runWithNext = false;
+    public bool repeatParallel = false;
+    public int repeatCount = 3;
+    public float repeatDelay = 0.5f;
 }
