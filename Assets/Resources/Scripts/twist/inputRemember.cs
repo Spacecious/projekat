@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class InputRecorder : MonoBehaviour
 {
-    [Header("Keybinding")]
+    public float recordDuration = 3f;
     public Key replayKey = Key.P;
 
     private List<Vector3> _positions = new List<Vector3>();
+    private bool _recording;
     private bool _replaying;
     private int _replayIndex;
     private PlayerMovement _movement;
@@ -16,35 +17,54 @@ public class InputRecorder : MonoBehaviour
     void Start()
     {
         _movement = GetComponent<PlayerMovement>();
+        StartCoroutine(RecordThenReplay());
     }
-
-    void Update()
+    private void Update()
     {
-        if (Keyboard.current[replayKey].wasPressedThisFrame)
+        if (_recording)
         {
-            if (_replaying) StopReplay();
-            else StartReplay();
+            _positions.Add(transform.position);
         }
 
-        if (_replaying) DoReplay();
-        else _positions.Add(transform.position); 
+        
+        if (_replaying)
+        {
+            DoReplay();
+        }
+    }
+
+    IEnumerator RecordThenReplay()
+    {
+        
+        yield return null;
+
+        _positions.Clear();
+        _recording = true;
+        
+
+        yield return new WaitForSeconds(recordDuration);
+
+        _recording = false;
+        
+
+        StartReplay();
     }
 
     void StartReplay()
     {
-        if (_positions.Count == 0) { Debug.LogWarning("[InputRecorder] Nothing recorded yet."); return; }
+        if (_positions.Count == 0) { return; }
 
         _replayIndex = 0;
         _replaying = true;
         _movement.enabled = false;
-        Debug.Log("[InputRecorder] Replaying " + _positions.Count + " frames.");
+        
     }
 
     void StopReplay()
     {
         _replaying = false;
         _movement.enabled = true;
-        Debug.Log("[InputRecorder] Replay stopped.");
+        
     }
 
     void DoReplay()
@@ -52,7 +72,6 @@ public class InputRecorder : MonoBehaviour
         if (_replayIndex >= _positions.Count)
         {
             StopReplay();
-            Debug.Log("[InputRecorder] Replay finished.");
             return;
         }
 
@@ -62,4 +81,3 @@ public class InputRecorder : MonoBehaviour
 
     
 }
-
