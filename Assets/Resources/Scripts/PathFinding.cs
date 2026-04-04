@@ -8,7 +8,7 @@ using UnityEngine.SocialPlatforms;
 public class PathFinding : MonoBehaviour
 {
 
-    public float speed = 1.0f;
+    public float speed = 7.0f;
     public float stopDistance = 1f;
     //[SerializeField] float pauseDuration = 3.0f;
 
@@ -44,11 +44,20 @@ public class PathFinding : MonoBehaviour
         }
     }
 
+        void Update()
+        {
+            if (player != null)
+            {
+                MoveTowardsPlayer();
+                
+            }
+        }
+
     public void MoveTowardsPlayer()
     {
-        speed = 1f;
-        if (player == null) return;
 
+        if (player == null) return;
+        speed = 1f;
         float direction = player.position.x > transform.position.x ? 1 : -1;
         float newX = transform.position.x + (direction * speed * Time.deltaTime);
         newX = Mathf.Clamp(newX, minX, maxX);

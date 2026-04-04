@@ -14,7 +14,7 @@ public class AmmoUI : MonoBehaviour
     {
         if (ammoText != null)
         {
-            ammoText.fontSize = 216;
+            ammoText.fontSize = 36;
             ammoText.text = currentAmmo.ToString();
 
         }
