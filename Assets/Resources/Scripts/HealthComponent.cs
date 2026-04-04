@@ -6,26 +6,26 @@ using UnityEngine.SceneManagement;
 public class HealthComponent : MonoBehaviour
 {
 
-    [SerializeField] int MaxHealth;
+    [SerializeField] int MaxHealth = 3;
     private GameObject[] heartSprites;
     public int CurrentHealth;
     public AudioSource dmg;
     private EnemyHealthUI enemyUI;
-
 
     public UnityEvent<float> OnHealthChanged;
 
     public int GetHealth()
     {
         return CurrentHealth;
-
     }
+
     void Start()
     {
         CurrentHealth = MaxHealth;
-        UpdateHeartUI();
+
+        // Redosled je bitan: prvo nađi srca, pa onda osveži UI
         FindHeartsInScene();
-        //Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen);
+        UpdateHeartUI();
 
         enemyUI = GetComponentInChildren<EnemyHealthUI>();
         if (enemyUI != null) enemyUI.SetHealth(CurrentHealth, MaxHealth);
@@ -33,79 +33,78 @@ public class HealthComponent : MonoBehaviour
 
     void FindHeartsInScene()
     {
-        heartSprites = new GameObject[3];
+        // Tražimo srca samo ako je ovo igrač
+        if (!gameObject.CompareTag("Player")) return;
 
+        heartSprites = new GameObject[MaxHealth];
 
-        heartSprites[0] = GameObject.Find("Health_1");
-        heartSprites[1] = GameObject.Find("Health_2");
-        heartSprites[2] = GameObject.Find("Health_3");
+        for (int i = 0; i < MaxHealth; i++)
+        {
+            string heartName = "Health_" + (i + 1);
+            heartSprites[i] = GameObject.Find(heartName);
 
-        // Sigurnosna provera
-        if (heartSprites[0] == null) Debug.LogError("Nisam na�ao Health_1 u sceni!");
+            if (heartSprites[i] == null)
+            {
+                Debug.LogWarning("Nisam našao " + heartName + " u sceni!");
+            }
+        }
     }
-
 
     public void TakeDamage(int damage)
     {
         CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-        dmg.pitch = Random.Range(0.8f, 1.2f);
-        dmg.Play();
+
+        if (dmg != null)
+        {
+            dmg.pitch = Random.Range(0.8f, 1.2f);
+            dmg.Play();
+        }
+
+        if (gameObject.CompareTag("Player"))
+        {
+            UpdateHeartUI();
+
+            // NOVO: Javljamo PlayerBuffs skripti da smo primili hit (za pasivni heal)
+            PlayerBuffs buffs = GetComponent<PlayerBuffs>();
+            if (buffs != null) buffs.RegisterHit();
+        }
 
         if (enemyUI != null)
         {
             enemyUI.SetHealth(CurrentHealth, MaxHealth);
         }
 
-        if (CompareTag("Player"))
+        if (CurrentHealth <= 0)
         {
-            UpdateHeartUI();
-
-        }
-
-        if (CurrentHealth == 0)
-        {
-
-            
             if (gameObject.CompareTag("Boss"))
             {
                 UnlockPlayerAbilities();
-                SceneManager.LoadScene("mainMenu");
-                
             }
 
-            
             if (gameObject.CompareTag("Player"))
             {
-                SceneManager.LoadScene("mainMenu");
-
-
                 Debug.Log("Player je poginuo!");
-                // Primer
             }
 
             Destroy(gameObject);
         }
-
-
     }
-
 
     private void UnlockPlayerAbilities()
     {
-        Player.firstBossDefeated = true;
+        // NOVO: Pristupamo statičkoj promenljivoj preko nove kontroler klase
+        PlayerController.firstBossDefeated = true;
 
-        
-        Player p = Object.FindAnyObjectByType<Player>();
-        if (p != null)
+        // Tražimo PlayerController umesto stare Player skripte
+        PlayerController pc = Object.FindAnyObjectByType<PlayerController>();
+        if (pc != null)
         {
-            if (p.dashIcon != null) p.dashIcon.SetActive(true);
-            if (p.gambleIcon != null) p.gambleIcon.SetActive(true);
-
-            
-            if (p.slotUI != null) p.slotUI.gameObject.SetActive(true);
+            if (pc.dashIcon != null) pc.dashIcon.SetActive(true);
+            if (pc.gambleIcon != null) pc.gambleIcon.SetActive(true);
+            if (pc.slotUI != null) pc.slotUI.gameObject.SetActive(true);
         }
 
-        Debug.Log("BOSS PORAŽEN! Sposobnosti i UI otključani.");
+        Debug.Log("BOSS PORAŽEN! Sposobnosti otključane.");
     }
 
     public void Heal()
@@ -116,32 +115,20 @@ public class HealthComponent : MonoBehaviour
 
     public void Heal(int health)
     {
-        CurrentHealth += health;
-    }
-
-    void Update()
-    {
-
+        CurrentHealth = Mathf.Min(CurrentHealth + health, MaxHealth);
+        UpdateHeartUI();
     }
 
     void UpdateHeartUI()
     {
         if (heartSprites == null || heartSprites.Length == 0) return;
 
-
         for (int i = 0; i < heartSprites.Length; i++)
         {
-
-            if (i < CurrentHealth)
+            if (heartSprites[i] != null)
             {
-                if (heartSprites[i] != null) heartSprites[i].SetActive(true);
-            }
-
-            else
-            {
-                if (heartSprites[i] != null) heartSprites[i].SetActive(false);
+                heartSprites[i].SetActive(i < CurrentHealth);
             }
         }
-
     }
 }
