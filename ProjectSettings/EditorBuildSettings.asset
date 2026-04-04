@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BulletHell.unity
     guid: 93e1c848947a0864d9edb6e1332e9f1a
+  - enabled: 1
+    path: Assets/Scenes/Twist.unity
+    guid: 23cbe321e67fcfa4a84669cf49026678
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

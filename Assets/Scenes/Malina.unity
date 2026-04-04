@@ -567,6 +567,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1747895575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747895564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2759bcf7c524d419f0d95d29f0eb1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::finalBossDefeat
 --- !u!1001 &1791985768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,11 +755,11 @@ PrefabInstance:
       objectReference: {fileID: 1747895573}
     - target: {fileID: 3125899423554882100, guid: 385e74f492017724facd1034305d34ed, type: 3}
       propertyPath: MaxHealth
-      value: 30
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3125899423554882100, guid: 385e74f492017724facd1034305d34ed, type: 3}
       propertyPath: CurrentHealth
-      value: 30
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3125899423554882100, guid: 385e74f492017724facd1034305d34ed, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.size
@@ -796,6 +808,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6985451728899771168, guid: 385e74f492017724facd1034305d34ed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1747895574}
+    - targetCorrespondingSourceObject: {fileID: 6985451728899771168, guid: 385e74f492017724facd1034305d34ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1747895575}
   m_SourcePrefab: {fileID: 100100000, guid: 385e74f492017724facd1034305d34ed, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

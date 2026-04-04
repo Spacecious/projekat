@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4340290317825375978}
   - component: {fileID: 8661847481864191455}
   - component: {fileID: 4954556696219732204}
+  - component: {fileID: 2080364185517644067}
   m_Layer: 0
   m_Name: Malina
   m_TagString: Boss
@@ -173,8 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5db48307e16cf41af934a0be64b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  MaxHealth: 1
-  CurrentHealth: 0
+  MaxHealth: 30
+  CurrentHealth: 30
   dmg: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
@@ -329,3 +330,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2080364185517644067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985451728899771168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2759bcf7c524d419f0d95d29f0eb1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::finalBossDefeat
