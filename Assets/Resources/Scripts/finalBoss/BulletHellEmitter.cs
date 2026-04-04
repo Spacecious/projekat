@@ -11,20 +11,42 @@ public class BulletHellEmitter : MonoBehaviour {
         StartCoroutine(ExecuteAllPatterns());
     }
 
-    IEnumerator ExecuteAllPatterns() {
+    IEnumerator ExecutePattern(BulletPatternConfig pattern) {
         float offset = 0f;
+        for (int i = 0; i < pattern.totalBursts; i++) {
+            SpawnBulletBurst(pattern, offset);
+            offset += bulletOffset;
+            yield return new WaitForSeconds(pattern.timeBetweenBursts);
+        }
+    }
 
-        foreach (var pattern in patterns) {
-            for (int i = 0; i < pattern.totalBursts; i++) {
-                SpawnBulletBurst(pattern, offset);
-                offset += bulletOffset;
-                yield return new WaitForSeconds(pattern.timeBetweenBursts);
+    IEnumerator RepeatPattern(BulletPatternConfig pattern) {
+        for (int i = 0; i < pattern.repeatCount; i++) {
+            StartCoroutine(ExecutePattern(pattern));
+            yield return new WaitForSeconds(pattern.repeatDelay);
+        }
+    }
+
+    IEnumerator ExecuteAllPatterns() {
+        int i = 0;
+        while (i < patterns.Count) {
+            var pattern = patterns[i];
+
+            if (pattern.runWithNext) {
+                if (pattern.repeatParallel) {
+                    StartCoroutine(RepeatPattern(pattern));
+                }
+                else {
+                    StartCoroutine(ExecutePattern(pattern));
+                }
             }
-            yield return new WaitForSeconds(1.5f);
+            else {
+                yield return StartCoroutine(ExecutePattern(pattern));
+            }
+            i++;
         }
 
-        Debug.Log("Preziveo si! Vracanje u glavni prozor...");
-        SceneManager.UnloadSceneAsync("BulletHellScene");
+        //SceneManager.UnloadSceneAsync("BulletHellScene");
     }
 
     void SpawnBulletBurst(BulletPatternConfig config, float offset) {
@@ -40,7 +62,7 @@ public class BulletHellEmitter : MonoBehaviour {
             Projectile proj = bullet.GetComponent<Projectile>();
 
             if (proj != null) {
-                proj.setVelocity(direction * config.bulletSpeed, "EnemyBullet");
+                proj.setVelocity(direction * config.bulletSpeed, "Boss");
             }
         }
     }

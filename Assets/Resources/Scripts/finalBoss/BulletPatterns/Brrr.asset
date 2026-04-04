@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398d7ef6306aae440a9e86609f77ffd3, type: 3}
   m_Name: Brrr
   m_EditorClassIdentifier: Assembly-CSharp::BulletPatternConfig
-  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
+  projectile: {fileID: 2222452220259527750, guid: c96181b0f186ce045ba855eb96efc585, type: 3}
   bulletCount: 2
-  bulletSpeed: 5
+  bulletSpeed: 7
   startAngle: 0
   endAngle: 360
   timeBetweenBursts: 0.15
-  totalBursts: 30
+  totalBursts: 45
+  runWithNext: 1
+  repeatParallel: 1
+  repeatCount: 9
+  repeatDelay: 0.5

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 398d7ef6306aae440a9e86609f77ffd3, type: 3}
-  m_Name: Fan
+  m_Name: Circle 1
   m_EditorClassIdentifier: Assembly-CSharp::BulletPatternConfig
   projectile: {fileID: 2222452220259527750, guid: c96181b0f186ce045ba855eb96efc585, type: 3}
   bulletCount: 10
   bulletSpeed: 7
-  startAngle: 150
-  endAngle: 210
-  timeBetweenBursts: 0.5
-  totalBursts: 11
+  startAngle: 0
+  endAngle: 360
+  timeBetweenBursts: 0.3
+  totalBursts: 15
   runWithNext: 0
   repeatParallel: 0
   repeatCount: 3

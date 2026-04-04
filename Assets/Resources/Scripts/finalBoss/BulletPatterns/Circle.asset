@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398d7ef6306aae440a9e86609f77ffd3, type: 3}
   m_Name: Circle
   m_EditorClassIdentifier: Assembly-CSharp::BulletPatternConfig
-  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
+  projectile: {fileID: 2222452220259527750, guid: c96181b0f186ce045ba855eb96efc585, type: 3}
   bulletCount: 10
-  bulletSpeed: 5
+  bulletSpeed: 7
   startAngle: 0
   endAngle: 360
-  timeBetweenBursts: 1
-  totalBursts: 5
+  timeBetweenBursts: 0.6
+  totalBursts: 15
+  runWithNext: 0
+  repeatParallel: 0
+  repeatCount: 3
+  repeatDelay: 0.5
