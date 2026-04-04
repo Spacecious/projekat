@@ -19,7 +19,7 @@ public class Boss2Defeat : MonoBehaviour
             sceneLoad = true;
             bossBeat2 = true;
 
-            PlayerController.canUseGamble = true;
+            
 
             Invoke("Menu", 0.5f);
 

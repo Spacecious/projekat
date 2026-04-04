@@ -3,10 +3,10 @@ using System.Collections;
 public class PlayerBuffs : MonoBehaviour
 {
     [SerializeField] int hitToHeal = 4;
-    [SerializeField] float gambleCooldown = 10f;
+    [SerializeField] float LuckyShotCooldown = 5f;
 
     private int hitCount = 0;
-    private bool canGamble = true;
+    private bool canLuckyShot = true;
     private PlayerController controls;
     private HealthComponent health;
     private SlotMachineUI slotUI;
@@ -27,9 +27,9 @@ public class PlayerBuffs : MonoBehaviour
        
 
         
-        if (PlayerController.canUseGamble && controls.gambleAction.triggered && canGamble)
+        if (PlayerController.canUseLuckyShot && controls.gambleAction.triggered && canLuckyShot)
         {
-            ActivateGamble();
+            ActivateLuckyShot();
         }
     }
 
@@ -43,9 +43,9 @@ public class PlayerBuffs : MonoBehaviour
         }
     }
 
-    void ActivateGamble()
+    void ActivateLuckyShot()
     {
-        canGamble = false;
+        canLuckyShot = false;
         int s1 = Random.Range(0, 3), s2 = Random.Range(0, 3), s3 = Random.Range(0, 3);
         slotUI?.StartSpinning(s1, s2, s3);
         StartCoroutine(ApplyBuffWithDelay(s1, s2, s3, 1.0f));
@@ -63,8 +63,8 @@ public class PlayerBuffs : MonoBehaviour
         switch (type)
         {
             case 0: health.Heal(); break;
-            case 1: StartCoroutine(DamageBuff(3f, 5f)); break;
-            case 2: StartCoroutine(SpeedBuff(2f, 5f)); break;
+            case 1: StartCoroutine(DamageBuff(10f, 5f)); break;
+            case 2: StartCoroutine(SpeedBuff(4f, 5f)); break;
         }
     }
 
@@ -84,7 +84,7 @@ public class PlayerBuffs : MonoBehaviour
 
     IEnumerator GambleCooldownRoutine()
     {
-        yield return new WaitForSeconds(gambleCooldown);
-        canGamble = true;
+        yield return new WaitForSeconds(LuckyShotCooldown);
+        canLuckyShot = true;
     }
 }

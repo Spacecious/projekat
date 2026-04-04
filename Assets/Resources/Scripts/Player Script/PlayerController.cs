@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public InputAction fireUp, fireDown, fireLeft, fireRight;
 
     public static bool canUseDash = false;
-    public static bool canUseGamble = false;
+    public static bool canUseLuckyShot = false;
 
     [Header("UI Reference (Dodaj u Editoru)")]
     public GameObject dashIcon;
@@ -35,9 +35,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("DASH OTKLJUcAN!");
         }
 
-        if (!canUseGamble && Boss2Defeat.bossBeat2)
+        if (!canUseLuckyShot && Boss2Defeat.bossBeat2)
         {
-            canUseGamble = true;
+            canUseLuckyShot = true;
             Debug.Log("GAMBLE OTKLJUcAN!");
         }
 
