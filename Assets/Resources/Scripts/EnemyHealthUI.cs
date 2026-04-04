@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class EnemyHealthUI : MonoBehaviour
 {
@@ -8,19 +8,38 @@ public class EnemyHealthUI : MonoBehaviour
 
     void Awake()
     {
+      
         healthSlider = GetComponent<Slider>();
-        cam = Camera.main.transform;
+        if (healthSlider == null)
+            healthSlider = GetComponentInChildren<Slider>();
+
+        if (Camera.main != null)
+            cam = Camera.main.transform;
     }
 
-    // Funkcija koju pozivamo da osvežimo bar
-  public void SetHealth(int currentHealth, int maxHealth)
-{
-    healthSlider.maxValue = maxHealth;
-    healthSlider.value = currentHealth; // Ovo pomera crvenu crtu
-}
+    public void SetHealth(int currentHealth, int maxHealth)
+    {
+        
+        if (healthSlider == null)
+            healthSlider = GetComponent<Slider>();
+
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
+        else
+        {
+            Debug.LogError("EnemyHealthUI na " + gameObject.name + " ne može da pronađe Slider komponentu!");
+        }
+    }
+
     void LateUpdate()
     {
-        // Čini da HP bar uvek gleda u kameru (da ne bude naopako kad se enemy okrene)
-        transform.LookAt(transform.position + cam.forward);
+       
+        if (cam != null)
+        {
+            transform.LookAt(transform.position + cam.forward);
+        }
     }
 }
