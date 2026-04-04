@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Granata
   thornPrefab: {fileID: 1245724255588293841, guid: 0d4f4233d1697db4f902b7a8126198ca, type: 3}
   speed: 10
-  timeToExplode: 1
+  timeToExplode: 1.2
   numberOfThorns: 8
 --- !u!1 &7151514598091110849
 GameObject:

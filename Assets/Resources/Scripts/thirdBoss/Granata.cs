@@ -29,13 +29,17 @@ public class Granata : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed*Time.deltaTime);
         }
-
-        float DistanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (DistanceToPlayer <= 3f)
+        if(player != null)
         {
-            Explode();
+            float DistanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (DistanceToPlayer <= 2f)
+            {
+                Explode();
+            }
         }
+        
+
+        
     }
 
     void Explode()
@@ -43,7 +47,7 @@ public class Granata : MonoBehaviour
         if (hasExploded)
             return;
         hasExploded = true;
-        Debug.Log("GRANATA BUM! Stvaram trnove.");
+        //Debug.Log("GRANATA BUM! Stvaram trnove.");
 
         float angleStep = 360f / numberOfThorns;
         float angle = 0f;
