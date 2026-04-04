@@ -760,6 +760,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.03914992
       objectReference: {fileID: 0}
+    - target: {fileID: 4330091966066582627, guid: 385e74f492017724facd1034305d34ed, type: 3}
+      propertyPath: spawnCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330091966066582627, guid: 385e74f492017724facd1034305d34ed, type: 3}
+      propertyPath: spawnReduction
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6985451728899771168, guid: 385e74f492017724facd1034305d34ed, type: 3}
       propertyPath: m_Name
       value: Malina
