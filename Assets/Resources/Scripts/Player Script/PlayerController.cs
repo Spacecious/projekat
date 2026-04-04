@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public InputAction moveAction, dashAction, gambleAction;
     [HideInInspector] public InputAction fireUp, fireDown, fireLeft, fireRight;
 
-    public static bool firstBossDefeated = false;
+    public static bool canUseDash = false;
+    public static bool canUseLuckyShot = false;
 
     [Header("UI Reference (Dodaj u Editoru)")]
     public GameObject dashIcon;
@@ -23,5 +24,22 @@ public class PlayerController : MonoBehaviour
         fireDown = InputSystem.actions.FindAction("ShootDown");
         fireLeft = InputSystem.actions.FindAction("ShootLeft");
         fireRight = InputSystem.actions.FindAction("ShootRight");
+    }
+
+    void Update()
+    {
+       
+        if (!canUseDash && boss1Defeat.bossBeat)
+        {
+            canUseDash = true;
+            Debug.Log("DASH OTKLJUcAN!");
+        }
+
+        if (!canUseLuckyShot && Boss2Defeat.bossBeat2)
+        {
+            canUseLuckyShot = true;
+            Debug.Log("GAMBLE OTKLJUcAN!");
+        }
+
     }
 }

@@ -18,6 +18,7 @@ public class boss1Defeat : MonoBehaviour
         {
             sceneLoad = true;
             bossBeat = true;
+            PlayerController.canUseDash = true;
             Invoke("Menu", 0.5f);
             
         }

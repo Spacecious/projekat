@@ -30,7 +30,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isStunned) return;
         Move();
-        if (controls.dashAction.triggered && canBlink) StartCoroutine(DashRoutine());
+        if (PlayerController.canUseDash && controls.dashAction.triggered && canBlink)
+        {
+            StartCoroutine(DashRoutine());
+        }
     }
 
     private void Move()
