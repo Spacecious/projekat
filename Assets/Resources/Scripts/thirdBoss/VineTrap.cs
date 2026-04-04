@@ -2,32 +2,30 @@ using UnityEngine;
 
 public class VineTrap : MonoBehaviour
 {
-
     [SerializeField] float stunDuration = 1f;
     [SerializeField] float lifeTime = 4f;
 
-    
     void Start()
     {
+       
         Destroy(gameObject, lifeTime);
-    }
-
-    
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Player player = other.GetComponent<Player>();
-            if(player != null)
+            
+            PlayerMovement movement = other.GetComponent<PlayerMovement>();
+
+            if (movement != null)
             {
-                player.ApllyStun(stunDuration);
+                
+                movement.ApplyStun(stunDuration);
+                Debug.Log("Igrac se upetljao u lozu! Stun trajanje: " + stunDuration + "s");
             }
 
+          
             Destroy(gameObject);
         }
     }

@@ -9,15 +9,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5108588545256381808}
-  - component: {fileID: 1344390265984007678}
   - component: {fileID: 6311406557423552471}
   - component: {fileID: -4327865537454519077}
   - component: {fileID: -3486804477561171705}
   - component: {fileID: 6306515138883721683}
   - component: {fileID: 604471619922034120}
+  - component: {fileID: -8030993058812933521}
+  - component: {fileID: -8076490900635102080}
+  - component: {fileID: -5577410773003329541}
+  - component: {fileID: 1829805007552425260}
   m_Layer: 0
   m_Name: Player
-  m_TagString: player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,32 +41,6 @@ Transform:
   - {fileID: 3243743427665069819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1344390265984007678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3722780808976444051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c84ddb5124abe2408223915a5e22c4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  reload: {fileID: 604471619922034120}
-  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
-  paddingLeft: 0.5
-  paddingRight: 0.5
-  paddingTop: 3
-  paddingBottom: 0.5
-  dashIcon: {fileID: 0}
-  gambleIcon: {fileID: 0}
-  blinkDistance: 5
-  blinkCooldown: 1.5
-  gambleCooldown: 10
-  HitToHeal: 4
-  damageMultiplier: 1
-  slotUI: {fileID: 0}
 --- !u!58 &6311406557423552471
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -158,7 +135,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 66800704ed822834db177985432dec00, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.199
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -339,6 +316,133 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8030993058812933521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722780808976444051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1449bc178012a0a4382654e463e18073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBuffs
+  hitToHeal: 4
+  gambleCooldown: 10
+--- !u!114 &-8076490900635102080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722780808976444051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9c9d59384fd5f4d993306d31d63097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  projectile: {fileID: 2222452220259527750, guid: aee4156556e937145887fd39a5e3bff2, type: 3}
+  reloadSound: {fileID: 604471619922034120}
+  ammo: 5
+  damageMultiplier: 1
+--- !u!114 &-5577410773003329541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722780808976444051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0bf7c54606df674fa00afd973e10744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moveAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 50d2161d-a4f4-444e-89f5-bee427aef7df
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  dashAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 050fdb49-b9cd-4073-ae03-1bcfc9802f3e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  gambleAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1cd123c0-0f95-404f-9a98-72bfdcc42ae5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  fireUp:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4fa84fe2-b6c3-49c1-a141-09f5d9936adc
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  fireDown:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9fdf7f42-d19a-47c1-b90a-b1bf2c203318
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  fireLeft:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 064d0b8f-9438-4f18-a645-40ecdaead4d7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  fireRight:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9565fb4b-7d8f-427e-93db-57f3f7106cf2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  dashIcon: {fileID: 0}
+  gambleIcon: {fileID: 0}
+  slotUI: {fileID: 0}
+--- !u!114 &1829805007552425260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722780808976444051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e93d2022856acd45bd2b207579b6778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  moveSpeed: 10
+  blinkDistance: 5
+  blinkCooldown: 3
+  paddingLeft: 0.5
+  paddingRight: 0.5
+  paddingTop: 0.5
+  paddingBottom: 0.5
 --- !u!1 &6610187278635293080
 GameObject:
   m_ObjectHideFlags: 0

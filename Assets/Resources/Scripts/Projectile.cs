@@ -3,8 +3,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
-    
-
     private string sender = "";
 
     public void setVelocity(Vector2 velocity, string sender)
@@ -12,41 +10,41 @@ public class Projectile : MonoBehaviour
         rb.linearVelocity = velocity;
         this.sender = sender;
     }
-    void Start()
-    {
-        
-    }
 
-     void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+       
         if (sender == "" || collision.CompareTag(sender))
             return;
 
+    
         HealthComponent hc = collision.GetComponent<HealthComponent>();
-
         if (hc == null) return;
 
-
-        Player playerr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        int finalDamage = Mathf.RoundToInt(1 * playerr.damageMultiplier); 
-        hc.TakeDamage(finalDamage);
-
-
-        KupinaBoss boss = collision.GetComponent<KupinaBoss>();
-        
+      
+        int finalDamage = 1;
 
         if (sender == "Player")
         {
-            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            if (player != null) {
-                player.RegisterHit();
+   
+            PlayerCombat combat = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
+            if (combat != null)
+            {
+                finalDamage = Mathf.RoundToInt(1 * combat.damageMultiplier);
+            }
+
+            
+            PlayerBuffs buffs = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBuffs>();
+            if (buffs != null)
+            {
+                buffs.RegisterHit();
             }
         }
 
-        Destroy(gameObject);
-    }
-    void Update()
-    {
         
+        hc.TakeDamage(finalDamage);
+
+        
+        Destroy(gameObject);
     }
 }
