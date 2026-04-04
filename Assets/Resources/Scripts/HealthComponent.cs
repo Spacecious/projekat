@@ -96,8 +96,7 @@ public class HealthComponent : MonoBehaviour
 
     private void UnlockPlayerAbilities()
     {
-        // NOVO: Pristupamo statičkoj promenljivoj preko nove kontroler klase
-        PlayerController.firstBossDefeated = true;
+        
 
         // Tražimo PlayerController umesto stare Player skripte
         PlayerController pc = Object.FindAnyObjectByType<PlayerController>();

@@ -24,7 +24,10 @@ public class PlayerBuffs : MonoBehaviour
 
     void Update()
     {
-        if (PlayerController.firstBossDefeated && controls.gambleAction.triggered && canGamble)
+       
+
+        
+        if (PlayerController.canUseGamble && controls.gambleAction.triggered && canGamble)
         {
             ActivateGamble();
         }
