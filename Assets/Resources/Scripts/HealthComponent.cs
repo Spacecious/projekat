@@ -23,12 +23,16 @@ public class HealthComponent : MonoBehaviour
     {
         CurrentHealth = MaxHealth;
 
-        // Redosled je bitan: prvo nađi srca, pa onda osveži UI
         FindHeartsInScene();
         UpdateHeartUI();
 
         enemyUI = GetComponentInChildren<EnemyHealthUI>();
-        if (enemyUI != null) enemyUI.SetHealth(CurrentHealth, MaxHealth);
+
+       
+        if (enemyUI != null)
+        {
+            enemyUI.SetHealth(CurrentHealth, MaxHealth);
+        }
     }
 
     void FindHeartsInScene()
