@@ -68,7 +68,7 @@ public class HealthComponent : MonoBehaviour
         {
             UpdateHeartUI();
 
-            // NOVO: Javljamo PlayerBuffs skripti da smo primili hit (za pasivni heal)
+            
             PlayerBuffs buffs = GetComponent<PlayerBuffs>();
             if (buffs != null) buffs.RegisterHit();
         }

@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isStunned) return;
         Move();
-        if (PlayerController.firstBossDefeated && controls.dashAction.triggered && canBlink) StartCoroutine(DashRoutine());
+        if (controls.dashAction.triggered && canBlink) StartCoroutine(DashRoutine());
     }
 
     private void Move()
