@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         // Inicijalizacija svih inputa
         moveAction = InputSystem.actions.FindAction("Move");
-        dashAction = InputSystem.actions.FindAction("Dash");
+        dashAction = InputSystem.actions.FindAction("Jump");
         gambleAction = InputSystem.actions.FindAction("Gamble");
         fireUp = InputSystem.actions.FindAction("ShootUp");
         fireDown = InputSystem.actions.FindAction("ShootDown");

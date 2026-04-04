@@ -8,7 +8,7 @@ using UnityEngine.SocialPlatforms;
 public class PathFinding : MonoBehaviour
 {
 
-    public float speed = 1.0f;
+    public float speed = 7.0f;
     public float stopDistance = 1f;
     //[SerializeField] float pauseDuration = 3.0f;
 
@@ -30,6 +30,12 @@ public class PathFinding : MonoBehaviour
 
     public float followSmoothness = 5f;
 
+    [SerializeField] float damageDistance = 3f;
+    [SerializeField] float damageCooldown = 1f;
+    private float lastDamage = 0f;
+
+    [SerializeField] GameObject Jagodica;
+
     [SerializeField] GameObject smokeBomb;
 
 
@@ -44,11 +50,25 @@ public class PathFinding : MonoBehaviour
         }
     }
 
+        void Update()
+        {
+            if (player != null)
+            {
+                MoveTowardsPlayer();
+                Vector3 jagodicaPosition = Jagodica.transform.position;
+                float currentDistance = Vector3.Distance(jagodicaPosition, player.position);
+                if(currentDistance <= damageDistance)
+                {
+                    TryApllyDamage();
+                }
+            }
+        }
+
     public void MoveTowardsPlayer()
     {
-        speed = 1f;
-        if (player == null) return;
 
+        if (player == null) return;
+        speed = 2f;
         float direction = player.position.x > transform.position.x ? 1 : -1;
         float newX = transform.position.x + (direction * speed * Time.deltaTime);
         newX = Mathf.Clamp(newX, minX, maxX);
@@ -105,6 +125,21 @@ public class PathFinding : MonoBehaviour
         {
             float seedSpeed = Random.Range(1f, 4f);
             rbSeed.linearVelocity = seed.transform.up * seedSpeed;
+        }
+    }
+
+    void TryApllyDamage()
+    {
+        if(Time.time >= lastDamage + damageCooldown)
+        {
+            Debug.Log("Jagoda te je udarila!");
+            HealthComponent playerHealth = player.GetComponent<HealthComponent>();
+            
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(1);
+            }
+            lastDamage = Time.time;
         }
     }
 }
