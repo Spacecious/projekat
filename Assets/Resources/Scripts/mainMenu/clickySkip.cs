@@ -8,5 +8,6 @@ public class clickySkip : MonoBehaviour
     {
         clickyManager.SetActive(false);
         clickBlock.SetActive(false);
+        GuideIntro.introOver = true;
     }
 }
