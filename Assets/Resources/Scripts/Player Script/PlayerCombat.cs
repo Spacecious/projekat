@@ -1,5 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] GameObject projectile;
@@ -9,7 +11,7 @@ public class PlayerCombat : MonoBehaviour
 
     private bool isReloading = false;
     private bool shootCooldown = true;
-    private PlayerController controls;
+    private PlayerController controls; 
     private AmmoUI ammoUI;
 
     void Start()
@@ -26,42 +28,57 @@ public class PlayerCombat : MonoBehaviour
 
     void HandleShooting()
     {
+      
         if (ammo <= 0 || isReloading || !shootCooldown) return;
 
         Vector2 dir = Vector2.zero;
-        bool fired = false;
+        bool isHoldingAnyKey = false;
 
-        if (controls.fireUp.triggered) { dir = Vector2.up * 10; fired = true; }
-        else if (controls.fireDown.triggered) { dir = Vector2.down * 10; fired = true; }
-        else if (controls.fireLeft.triggered) { dir = Vector2.left * 10; fired = true; }
-        else if (controls.fireRight.triggered) { dir = Vector2.right * 10; fired = true; }
+      
+        if (controls.fireUp.IsPressed()) { dir = Vector2.up * 10; isHoldingAnyKey = true; }
+        else if (controls.fireDown.IsPressed()) { dir = Vector2.down * 10; isHoldingAnyKey = true; }
+        else if (controls.fireLeft.IsPressed()) { dir = Vector2.left * 10; isHoldingAnyKey = true; }
+        else if (controls.fireRight.IsPressed()) { dir = Vector2.right * 10; isHoldingAnyKey = true; }
 
-        if (fired)
+        if (isHoldingAnyKey)
         {
-            GameObject p = Instantiate(projectile, transform.position, Quaternion.identity);
-            p.GetComponent<Projectile>()?.setVelocity(dir, gameObject.tag);
-            ammo--;
-            ammoUI?.UpdateAmmoDisplay(ammo);
-            shootCooldown = false;
-            StartCoroutine(ShotCooldownRoutine());
-            Destroy(p, 2f);
-            if (ammo <= 0) StartCoroutine(ReloadRoutine());
+            ExecuteShot(dir);
         }
+    }
+
+    void ExecuteShot(Vector2 dir)
+    {
+        GameObject p = Instantiate(projectile, transform.position, Quaternion.identity);
+        p.GetComponent<Projectile>()?.setVelocity(dir, gameObject.tag);
+
+        ammo--;
+        ammoUI?.UpdateAmmoDisplay(ammo);
+
+        shootCooldown = false;
+        StartCoroutine(ShotCooldownRoutine());
+
+        Destroy(p, 2f);
+
+        if (ammo <= 0) StartCoroutine(ReloadRoutine());
     }
 
     IEnumerator ShotCooldownRoutine()
     {
+      
         yield return new WaitForSeconds(0.5f);
-        if (!isReloading) shootCooldown = true;
+        shootCooldown = true;
     }
 
     IEnumerator ReloadRoutine()
     {
         isReloading = true;
+        shootCooldown = false; 
         yield return new WaitForSeconds(1f);
+
         reloadSound?.Play();
         ammo = 5;
         ammoUI?.UpdateAmmoDisplay(ammo);
+
         isReloading = false;
         shootCooldown = true;
     }

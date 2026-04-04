@@ -435,6 +435,7 @@ MonoBehaviour:
   followSmoothness: 5
   damageDistance: 2
   damageCooldown: 1
+  Jagodica: {fileID: 1226960098}
   smokeBomb: {fileID: 6428377651202343089, guid: 0f2e806a4793f5243a9f06af57b1aa09, type: 3}
 --- !u!4 &716030493 stripped
 Transform:
@@ -502,6 +503,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
+--- !u!1 &1226960098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5010538466055692698, guid: 8a8d30a8d2e4f4f41b5fd78c78a4be29, type: 3}
+  m_PrefabInstance: {fileID: 820779161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1429679330
 PrefabInstance:
   m_ObjectHideFlags: 0
