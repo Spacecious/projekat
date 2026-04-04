@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f36bd8ecbff314f816bdd5ce2645f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trn
-  speed: 8
+  speed: 12
   damage: 1
   lifeTime: 1
 --- !u!1 &6050465200357640112

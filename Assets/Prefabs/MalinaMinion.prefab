@@ -225,8 +225,8 @@ MonoBehaviour:
   projectile: {fileID: 2222452220259527750, guid: c96181b0f186ce045ba855eb96efc585, type: 3}
   reloadSpeed: 1
   ammo: 3
-  shootInterval: 0.5
-  bulletSpeed: 10
+  shootInterval: 1
+  bulletSpeed: 8
 --- !u!82 &732821414243395902
 AudioSource:
   m_ObjectHideFlags: 0

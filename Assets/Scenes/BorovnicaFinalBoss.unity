@@ -784,6 +784,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: MaxHealth
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769667070928668613, guid: a69c70f9c68250a44ae82e199d820429, type: 3}
+      propertyPath: CurrentHealth
+      value: 19
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -68,7 +68,7 @@ public class KupinaBoss : MonoBehaviour
 
     void ShootGranata()
     {
-        animator.SetTrigger("Granata");
+        //animator.SetTrigger("Granata");
         if (granataPrefab != null)
         {
             
@@ -79,7 +79,7 @@ public class KupinaBoss : MonoBehaviour
 
     void SpawnVineTraps()
     {
-        animator.SetTrigger("Vine");
+        //animator.SetTrigger("Vine");
         for (int i = 0; i < currentNumberOfVines; i++)
         {
             float randX = Random.Range(minX, maxX);

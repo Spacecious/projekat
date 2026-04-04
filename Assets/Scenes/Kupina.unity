@@ -716,6 +716,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5026993709430286450, guid: 7c2b7d60bcde1c842a0877ae768ae910, type: 3}
+      propertyPath: spwanRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6987400282663132734, guid: 7c2b7d60bcde1c842a0877ae768ae910, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -723,6 +727,14 @@ PrefabInstance:
     - target: {fileID: 7687114638146259895, guid: 7c2b7d60bcde1c842a0877ae768ae910, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962847161824709428, guid: 7c2b7d60bcde1c842a0877ae768ae910, type: 3}
+      propertyPath: m_Radius
+      value: 1.2867329
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962847161824709428, guid: 7c2b7d60bcde1c842a0877ae768ae910, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.035227537
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
